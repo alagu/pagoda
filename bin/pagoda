@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+
+require 'rubygems'
+require 'pagoda'
+
+require 'pagoda/app'
+
+Shwedagon::App.run!({})
