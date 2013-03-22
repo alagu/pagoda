@@ -27,16 +27,44 @@ module Shwedagon
     }
 
     get '/' do
-      config = Jekyll.configuration({'source' => '../blog'})
+      config = Jekyll.configuration({'source' => settings.blog})
       site   = Jekyll::Site.new(config)
       site.read
 
-      @drafts = (site.read_drafts.map { |p| p.data['title']}).reverse!
-      @published = (site.posts.map { |p| p.data['title'] }).reverse!
+      @drafts = site.read_drafts.map do |post|
+        {
+          :title => post.data['title'],
+          :filename => post.name
+        }
+      end
 
+      @drafts.reverse!
 
-    #  ['Testing here', 'Published new']
+      @published = site.posts.map do |post|
+        {
+          :title => post.data['title'],
+          :filename => post.name
+        }
+      end
+
+      @published.reverse!
+    
       mustache :home
     end
+
+    get '/edit/*' do
+      file =  params[:splat].first
+
+      config = Jekyll.configuration({'source' => settings.blog})
+      site   = Jekyll::Site.new(config)
+      post   = Jekyll::Post.new(site, site.source, '', file)
+      
+      @title = post.data['title']
+      @content = post.content
+
+
+      mustache :edit
+    end
+
   end
 end
