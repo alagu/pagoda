@@ -1,4 +1,3 @@
-
 <body class="admin posts admin">
   <div id="admin">
     <div id="save"></div>
@@ -11,9 +10,9 @@
 
       <ul>
         {{#drafts}}
-        <li id="post-885">
+        <li id="post-{{filename}}">
           <h3>
-            <a href="/edit/885">{{.}}</a>
+            <a href="/edit/{{filename}}">{{title}}</a>
             <span class="links">
               <a href="/this-is-brilliant" class="admin-view">view</a>
               <a href="/this-is-brilliant" class="admin-delete" data-confirm="Are you sure?" data-method="delete" rel="nofollow">x</a>
@@ -33,9 +32,9 @@
   <h2>Published <a href="http://obtvse.herokuapp.com/" class="button">Home</a></h2>
   <ul>
     {{#published}}
-    <li id="post-754">
+    <li id="post-{{filename}}">
       <h3>
-        <a href="/edit/754">{{.}}</a>
+        <a href="/edit/{{filename}}">{{title}}</a>
         <span class="links">
           <a href="/vniverse" class="admin-view">view</a>
           <a href="/vniverse" class="admin-delete" data-confirm="Are you sure?" data-method="delete" rel="nofollow">x</a>
