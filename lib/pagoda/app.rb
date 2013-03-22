@@ -4,6 +4,7 @@ require 'sinatra'
 require 'pagoda'
 require 'mustache/sinatra'
 require 'jekyll'
+require 'jekyll-mod'
 
 require 'pagoda/views/layout'
 
@@ -30,7 +31,7 @@ module Shwedagon
       site   = Jekyll::Site.new(config)
       site.read
 
-      @drafts = ['Hello There', 'Another draft']
+      @drafts = (site.read_drafts.map { |p| p.data['title']}).reverse!
       @published = (site.posts.map { |p| p.data['title'] }).reverse!
 
 
