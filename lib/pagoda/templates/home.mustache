@@ -1,0 +1,58 @@
+
+<body class="admin posts admin">
+  <div id="admin">
+    <div id="save"></div>
+    
+    <div id="drafts" class="col">
+      <h1>Drafts <a href="/new" class="button">New Draft</a></h1>
+      <form accept-charset="UTF-8" action="/posts" class="new_post" id="new_post" method="post">
+        <input id="post_title" name="post[title]" placeholder="Start typing your title here..." size="30" type="text" />
+      </form>  
+
+      <ul>
+        {{#drafts}}
+        <li id="post-885">
+          <h3>
+            <a href="/edit/885">{{.}}</a>
+            <span class="links">
+              <a href="/this-is-brilliant" class="admin-view">view</a>
+              <a href="/this-is-brilliant" class="admin-delete" data-confirm="Are you sure?" data-method="delete" rel="nofollow">x</a>
+            </span>
+          </h3>
+        </li>
+        {{/drafts}}
+      </ul>
+    <nav class="pagination">
+      <span class="next">
+      <a href="/admin?draft_page=2" rel="next"> Next &gt;</a>
+      </span>
+    </nav>
+  </div>
+
+  <div id="published" class="col">
+  <h2>Published <a href="http://obtvse.herokuapp.com/" class="button">Home</a></h2>
+  <ul>
+    {{#published}}
+    <li id="post-754">
+      <h3>
+        <a href="/edit/754">{{.}}</a>
+        <span class="links">
+          <a href="/vniverse" class="admin-view">view</a>
+          <a href="/vniverse" class="admin-delete" data-confirm="Are you sure?" data-method="delete" rel="nofollow">x</a>
+        </span>
+      </h3>
+    </li>
+    {{/published}}
+  </ul>
+
+
+  <nav class="pagination">
+    <span class="next">
+      <a href="/admin?post_page=2" rel="next"> Next &gt;</a>
+    </span>
+  </nav>
+
+  </div>
+  </div>
+
+  <script src="/assets/application-87e247a0962d66d8e34731bbac8cd190.js" type="text/javascript"></script>
