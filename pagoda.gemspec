@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE]
 
-  s.add_dependency('jekyll', '1.0.0.beta2')
+  s.add_dependency('jekyll')
 
 
   # = MANIFEST =
