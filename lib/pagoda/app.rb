@@ -3,7 +3,7 @@ require 'cgi'
 require 'sinatra'
 require 'pagoda'
 require 'mustache/sinatra'
-
+require 'jekyll'
 
 require 'pagoda/views/layout'
 
@@ -26,8 +26,15 @@ module Shwedagon
     }
 
     get '/' do
+      config = Jekyll.configuration({'source' => '../blog'})
+      site   = Jekyll::Site.new(config)
+      site.read
+
       @drafts = ['Hello There', 'Another draft']
-      @published = ['Testing here', 'Published new']
+      @published = (site.posts.map { |p| p.data['title'] }).reverse!
+
+
+    #  ['Testing here', 'Published new']
       mustache :home
     end
   end

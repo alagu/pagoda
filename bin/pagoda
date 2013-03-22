@@ -7,4 +7,11 @@ require 'pagoda'
 
 require 'pagoda/app'
 
+#TODO Use options parser
+if not ARGV.first
+  puts "Enter a valid blog path"
+else
+  Shwedagon::App.set :blog, ARGV.first
+end
+
 Shwedagon::App.run!({})
