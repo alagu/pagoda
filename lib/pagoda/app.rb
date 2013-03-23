@@ -66,5 +66,9 @@ module Shwedagon
       mustache :edit
     end
 
+    get '/new' do
+      mustache :new
+    end
+
   end
 end
