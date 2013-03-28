@@ -24,6 +24,13 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = %w[README.md LICENSE]
 
   s.add_dependency('jekyll')
+  s.add_dependency('grit')
+  s.add_dependency('json')
+  s.add_development_dependency('sinatra')
+  
+  s.add_development_dependency('sinatra-reloader')
+  s.add_development_dependency('compass')
+  s.add_development_dependency('fssm')
 
 
   # = MANIFEST =

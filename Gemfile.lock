@@ -2,11 +2,14 @@ PATH
   remote: .
   specs:
     pagoda (0.0.1)
+      grit
       jekyll
+      json
 
 GEM
   remote: https://rubygems.org/
   specs:
+    backports (3.1.1)
     chunky_png (1.2.7)
     classifier (1.3.3)
       fast-stemmer (>= 1.0.0)
@@ -14,9 +17,15 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    diff-lcs (1.2.1)
     directory_watcher (1.5.1)
+    eventmachine (1.0.3)
     fast-stemmer (1.0.2)
     fssm (0.2.10)
+    grit (2.5.0)
+      diff-lcs (~> 1.1)
+      mime-types (~> 1.15)
+      posix-spawn (~> 0.3.6)
     jekyll (0.12.1)
       classifier (~> 1.3)
       directory_watcher (~> 1.1)
@@ -24,17 +33,38 @@ GEM
       liquid (~> 2.3)
       maruku (~> 0.5)
       pygments.rb (~> 0.3.2)
+    json (1.7.7)
     kramdown (0.14.2)
     liquid (2.5.0)
     maruku (0.6.1)
       syntax (>= 1.0.0)
+    mime-types (1.21)
     posix-spawn (0.3.6)
     pygments.rb (0.3.7)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
+    rack (1.5.2)
+    rack-protection (1.5.0)
+      rack
+    rack-test (0.6.2)
+      rack (>= 1.0)
     rake (10.0.3)
     sass (3.2.7)
+    sinatra (1.3.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.3)
+      tilt (~> 1.3, >= 1.3.3)
+    sinatra-contrib (1.3.2)
+      backports (>= 2.0)
+      eventmachine
+      rack-protection
+      rack-test
+      sinatra (~> 1.3.0)
+      tilt (~> 1.3)
+    sinatra-reloader (1.0)
+      sinatra-contrib
     syntax (1.0.0)
+    tilt (1.3.6)
     yajl-ruby (1.1.0)
 
 PLATFORMS
@@ -45,3 +75,5 @@ DEPENDENCIES
   fssm
   pagoda!
   rake (~> 10.0.3)
+  sinatra
+  sinatra-reloader
