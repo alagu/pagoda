@@ -8,6 +8,7 @@ require 'jekyll'
 require 'jekyll-mod'
 require 'json'
 require 'grit'
+require 'stringex'
 
 require 'pagoda/views/layout'
 
@@ -73,25 +74,37 @@ module Shwedagon
       mustache :edit
     end
 
-    get '/new' do
-      mustache :new
+    post '/new' do
+      @post_title = params['new_post_title']
+      mustache :new_post
+    end
+
+    post '/create-post' do
     end
 
     post '/save-post' do
-      content_type 'text/plain'
-
-      filename = params[:post][:name]
       config = Jekyll.configuration({'source' => settings.blog})
       site   = Jekyll::Site.new(config)
-      post   = Jekyll::Post.new(site, site.source, '', filename)
 
-
-      content  = post.data.to_yaml + "---\n"
-      content += params[:post][:content]
-
-      file = File.join(site.source, *%w[_posts], filename)
-      if File.exists? file
+      if params[:method] == 'put'
+        post_title = params['post']['title']
+        post_date  = (Time.now).strftime("%Y-%M-%d")
+        yaml_data  = {'title' => post_title, 'layout' => 'post', 'published' => 'false'}
+        content    = yaml_data.to_yaml + "---\n"
+        content   += params[:post][:content]
+        filename   = (post_date + " " + post_title).to_url + '.md'
+        file       = File.join(site.source, *%w[_posts], filename)
         File.open(file, 'w') { |file| file.write(content)}
+      else
+        filename  = params[:post][:name]
+        post   = Jekyll::Post.new(site, site.source, '', filename)
+        content  = post.data.to_yaml + "---\n"
+        content += params[:post][:content]
+
+        file = File.join(site.source, *%w[_posts], filename)
+        if File.exists? file
+          File.open(file, 'w') { |file| file.write(content)}
+        end
       end
 
       repo = Grit::Repo.new(settings.blog)
@@ -103,9 +116,14 @@ module Shwedagon
         repo.add file
       end
 
+      if params[:method] == 'put'
+        puts "Adding new file - #{filename}"
+        repo.add File.join(site.source, *%w[_posts], filename)
+      end
+
       data = repo.commit_index "Changed #{filename}"
 
-       redirect '/edit/' + filename
+      redirect '/edit/' + filename
     end
 
   end

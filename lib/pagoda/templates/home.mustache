@@ -4,8 +4,11 @@
     
     <div id="drafts" class="col">
       <h1>Drafts <a href="/new" class="button">New Draft</a></h1>
-      <form accept-charset="UTF-8" action="/posts" class="new_post" id="new_post" method="post">
-        <input id="post_title" name="post[title]" placeholder="Start typing your title here..." size="30" type="text" />
+      <form accept-charset="UTF-8" action="/new" class="new_post" id="new_post" method="post">
+        <input id           = "post_title" 
+               name         = "new_post_title" 
+               autocomplete = "off"
+               placeholder  = "Start typing your title here..." size="30" type="text" />
       </form>  
 
       <ul>
