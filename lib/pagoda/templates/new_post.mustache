@@ -2,7 +2,8 @@
   <div id="admin">
     <div id="save"></div>
     
-    <form accept-charset="UTF-8" action="/cream" class="edit_post" id="edit_post_860" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="put" /><input name="authenticity_token" type="hidden" value="cPK9AJO12IlgL8cK/D58r8ISksw6QyHrF5hzY68Jea4=" /></div>
+    <form accept-charset="UTF-8" action="/save-post" class="edit_post" method="post">
+    <input type="hidden" name="method" value="put" />
 
 <div id="split">
   <div id="post-editor" class="split-section">
@@ -10,13 +11,13 @@
     <a href="/cream" class="permalink" target="_blank">⚓</a>
     <div id="text-title" class="expandingArea active ">
       <pre><span></span><br></pre>
-      <textarea cols="40" id="post_title" name="post[title]" placeholder="Title here" rows="1"></textarea>
+      <textarea cols="40" id="post_title" name="post[title]" placeholder="Title here" rows="1">{{post_title}}</textarea>
     </div>
 
     <fieldset class="markdown">
       <div id="text-content" class="expandingArea active">
         <pre><span></span><br></pre>
-        <textarea cols="40" id="post_content" name="post[content]" placeholder="Write post here" rows="20">{{content}}</textarea>
+        <textarea cols="40" id="post_content" name="post[content]" placeholder="Write post here" rows="20"></textarea>
       </div>
     </fieldset>
   </div>
