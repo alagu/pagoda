@@ -95,6 +95,8 @@ module Shwedagon
       end
 
       repo = Grit::Repo.new(settings.blog)
+
+      # Git add works only when you do it from that path.
       Dir.chdir(settings.blog)
 
       repo.status.changed.keys.each do |file|
