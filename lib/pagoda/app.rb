@@ -72,9 +72,7 @@ module Shwedagon
     get '/edit/*' do
       file =  params[:splat].first
 
-      config = Jekyll.configuration({'source' => settings.blog})
-      site   = Jekyll::Site.new(config)
-      post   = Jekyll::Post.new(site, site.source, '', file)
+      post   = Jekyll::Post.new(jekyll_site, jekyll_site.source, '', file)
       
       @title   = post.data['title']
       @content = post.content
@@ -101,7 +99,7 @@ module Shwedagon
       content    = yaml_data.to_yaml + "---\n"
       content   += params[:post][:content]
       filename   = (post_date + " " + post_title).to_url + '.md'
-      file       = File.join(site.source, *%w[_posts], filename)
+      file       = File.join(jekyll_site.source, *%w[_posts], filename)
       File.open(file, 'w') { |file| file.write(content)}
       filename
     end
@@ -109,11 +107,11 @@ module Shwedagon
     # Update exiting post.
     def update_post(params)
       filename  = params[:post][:name]
-      post   = Jekyll::Post.new(site, site.source, '', filename)
+      post   = Jekyll::Post.new(jekyll_site, jekyll_site.source, '', filename)
       content  = post.data.to_yaml + "---\n"
       content += params[:post][:content]
 
-      file = File.join(site.source, *%w[_posts], filename)
+      file = File.join(jekyll_site.source, *%w[_posts], filename)
       if File.exists? file
         File.open(file, 'w') { |file| file.write(content)}
       end
@@ -137,7 +135,7 @@ module Shwedagon
       Dir.chdir(settings.blog)
 
       # Stage the file for commit
-      repo.add File.join(site.source, *%w[_posts], filename)
+      repo.add File.join(jekyll_site.source, *%w[_posts], filename)
 
       data = repo.commit_index "Changed #{filename}"
 
