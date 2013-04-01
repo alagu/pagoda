@@ -27,7 +27,8 @@ Gem::Specification.new do |s|
   s.add_dependency('grit')
   s.add_dependency('json')
   s.add_dependency('stringex')
-  s.add_development_dependency('sinatra')
+  s.add_dependency('sinatra-mustache')
+  s.add_dependency('sinatra')
   
   s.add_development_dependency('sinatra-reloader')
   s.add_development_dependency('compass')

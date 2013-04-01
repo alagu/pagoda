@@ -5,6 +5,9 @@ PATH
       grit
       jekyll
       json
+      sinatra
+      sinatra-mustache
+      stringex
 
 GEM
   remote: https://rubygems.org/
@@ -17,7 +20,7 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    diff-lcs (1.2.1)
+    diff-lcs (1.2.2)
     directory_watcher (1.5.1)
     eventmachine (1.0.3)
     fast-stemmer (1.0.2)
@@ -38,7 +41,8 @@ GEM
     liquid (2.5.0)
     maruku (0.6.1)
       syntax (>= 1.0.0)
-    mime-types (1.21)
+    mime-types (1.22)
+    mustache (0.99.4)
     posix-spawn (0.3.6)
     pygments.rb (0.3.7)
       posix-spawn (~> 0.3.6)
@@ -61,8 +65,13 @@ GEM
       rack-test
       sinatra (~> 1.3.0)
       tilt (~> 1.3)
+    sinatra-mustache (0.1.0)
+      mustache (~> 0.99)
+      sinatra (~> 1)
+      tilt (~> 1.3, ~> 1.2)
     sinatra-reloader (1.0)
       sinatra-contrib
+    stringex (1.5.1)
     syntax (1.0.0)
     tilt (1.3.6)
     yajl-ruby (1.1.0)
@@ -75,5 +84,4 @@ DEPENDENCIES
   fssm
   pagoda!
   rake (~> 10.0.3)
-  sinatra
   sinatra-reloader
