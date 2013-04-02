@@ -493,6 +493,11 @@ fieldset.markdown {
   width: 100%;
   position: relative;
   margin: 0;
+  resize: none;
+}
+
+#post_title {
+  resize: none;
 }
 
 form .permalink {
