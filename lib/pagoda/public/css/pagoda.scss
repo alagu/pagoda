@@ -419,11 +419,7 @@ body.posts.new #admin {
     outline: 0;
     border: 0;
   }
-
-  .expandingArea {
-    position: relative;
-  }
-
+  
   .expandingArea > textarea,
   .expandingArea > pre {
     background: transparent;
@@ -444,13 +440,6 @@ body.posts.new #admin {
   }
 
   .expandingArea.active > textarea {
-    /* Hide any scrollbars */
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    /* Remove WebKit user-resize widget */
     resize: none;
   }
 
@@ -470,6 +459,11 @@ fieldset.markdown {
   border: none;
   margin: 0;
   padding: 0;
+}
+
+#post-editor {
+  width: 700px;
+  margin: 0 auto;
 }
 
 .markdown:before {
@@ -507,47 +501,6 @@ form .permalink {
  top: 12px;
  border: none;
  color: #ddd;
-}
-
-#split {
-  #post-preview {
-    display: none;
-  }
-
-  #post-editor {
-    margin-left: -25%;
-    left: 50%;
-    width: 600px;
-  }
-}
-
-#split.preview {
-  #post-preview {display: block;}
-  #post-editor {
-    left: 0;
-    margin: 0;
-    width: 50%;
-  }
-}
-
-.split-section {
-  width: 50%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  padding: 0 20px 100px;
-  height: 100%;
-  overflow: scroll;
-          box-sizing: border-box;
-     -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-
-#post-preview {
-  background: #f0f4fc;
-  border-left: 1px solid #dbe3f1;
-  right: 0;
-  left: auto;
 }
 
 .admin-view {
