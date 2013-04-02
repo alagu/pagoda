@@ -49,20 +49,22 @@ module Shwedagon
       @drafts = jekyll_site.read_drafts.map do |post|
         {
           :title => post.data['title'],
-          :filename => post.name
+          :filename => post.name,
+          :date     => post.date
         }
       end
 
-      @drafts.reverse!
+      @drafts.sort! { |x,y| x[:date] <=> y[:date] }
 
       @published = jekyll_site.posts.map do |post|
         {
           :title => post.data['title'],
-          :filename => post.name
+          :filename => post.name,
+          :date  => post.date
         }
       end
 
-      @published.reverse!
+      @published.sort! { |x,y| x[:date] <=> y[:date] }
     
       mustache :home
     end
