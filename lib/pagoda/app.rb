@@ -54,7 +54,7 @@ module Shwedagon
         }
       end
 
-      @drafts.sort! { |x,y| x[:date] <=> y[:date] }
+      @drafts.sort! { |x,y| y[:date] <=> x[:date] }
 
       @published = jekyll_site.posts.map do |post|
         {
@@ -64,7 +64,7 @@ module Shwedagon
         }
       end
 
-      @published.sort! { |x,y| x[:date] <=> y[:date] }
+      @published.sort! { |x,y| y[:date] <=> x[:date] }
     
       mustache :home
     end
