@@ -94,13 +94,19 @@ module Shwedagon
     end
 
     get '/settings/pull' do
+
       repo = Grit::Repo.new(settings.blog)
+
+      Dir.chdir(settings.blog)
+
       data = repo.git.pull({}, "origin", "master")
       return data + " done"
     end
 
     get '/settings/push' do
       repo = Grit::Repo.new(settings.blog) 
+      Dir.chdir(settings.blog)
+
       data = repo.git.push
       return data + " done"
     end
