@@ -524,10 +524,31 @@ nav.pagination {
   padding: 0;
 }
 
-  nav.pagination a {
-    margin-left: 10px;
+nav.pagination a {
+  margin-left: 10px;
+}
+
+body {
+  margin: 0;
+}
+
+.settings {
+  .settings-bd {
+    border: 4px solid #000;
+    border-top: none;
+    background: #fff;
+    margin: 0 auto;
+    padding: 10px 20px;   
+    width: 760px;
   }
 
-  body {
-    margin: 0;
+  .admin-btn {
+    float: right;
+    margin-top: 30px;
   }
+
+  .left-col {
+    display: inline-block;
+    width: 350px;
+  }
+}

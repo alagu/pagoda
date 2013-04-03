@@ -89,6 +89,22 @@ module Shwedagon
       mustache :new_post
     end
 
+    get '/settings' do
+      mustache :settings
+    end
+
+    get '/settings/pull' do
+      repo = Grit::Repo.new(settings.blog)
+      data = repo.git.pull({}, "origin", "master")
+      return data + " done"
+    end
+
+    get '/settings/push' do
+      repo = Grit::Repo.new(settings.blog) 
+      data = repo.git.push
+      return data + " done"
+    end
+
     # Create a new post from scratch. Return filename
     # This would not commit the file.
     def create_new_post(params)      
