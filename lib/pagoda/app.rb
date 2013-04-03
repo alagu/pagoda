@@ -84,8 +84,8 @@ module Shwedagon
       mustache :edit
     end
 
-    post '/new' do
-      @post_title = params['new_post_title']
+    get '/new' do
+      @ptitle = params['ptitle']
       mustache :new_post
     end
 
