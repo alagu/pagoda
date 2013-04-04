@@ -79,6 +79,9 @@ module Shwedagon
       @title   = post.data['title']
       @content = post.content
       @name    = post.name
+      if post.data['published'] == false
+        @draft = true
+      end
 
 
       mustache :edit
@@ -130,8 +133,21 @@ module Shwedagon
 
     # Update exiting post.
     def update_post(params)
+      
+
       filename  = params[:post][:name]
       post   = Jekyll::Post.new(jekyll_site, jekyll_site.source, '', filename)
+
+      puts params
+      
+      if not (params[:post].has_key? 'draft' and params[:post]['draft'] == "on")
+        post.data['published'] = true
+      else
+        post.data['published'] = false
+      end
+
+      puts post.data
+
       content  = post.data.to_yaml + "---\n"
       content += params[:post][:content]
 

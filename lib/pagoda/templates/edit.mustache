@@ -25,7 +25,7 @@
             </div>
             <div class="right">
               <label for="post_draft">Draft</label>
-              <input name="post[draft]" type="hidden" value="0" /><input id="post_draft" name="post[draft]" type="checkbox" value="1" />
+              <input id="post_draft" name="post[draft]" type="checkbox" {{#draft}}checked{{/draft}} />
               <input id="save-button" name="commit" type="submit" value="Save" />
             </div>
           </div>
