@@ -461,10 +461,30 @@ fieldset.markdown {
   padding: 0;
 }
 
-#post-editor {
-  width: 700px;
+#split {
+  width: 716px;
   margin: 0 auto;
+  
+  #post-editor {
+    width: 700px;
+    float: left;
+  }
+
+  #fullscreen {
+    float: left;
+    position: relative;
+    top: 35px;
+    border: 0 none;
+  }
+  
 }
+
+.fullScreen {
+  #fullscreen {
+    visibility: hidden;
+  }
+}
+
 
 .markdown:before {
   display: block;
