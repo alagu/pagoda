@@ -18,17 +18,12 @@
             <a href="/edit/{{filename}}">{{title}}</a>
             <span class="links">
               <a href="/this-is-brilliant" class="admin-view">view</a>
-              <a href="/delete/{{filename}}" class="admin-delete" data-confirm="Are you sure?" data-method="delete" rel="nofollow">x</a>
+              <a href="/delete/{{filename}}" class="delete-button admin-delete" rel="nofollow">x</a>
             </span>
           </h3>
         </li>
         {{/drafts}}
       </ul>
-    <nav class="pagination">
-      <span class="next">
-      <a href="/admin?draft_page=2" rel="next"> Next &gt;</a>
-      </span>
-    </nav>
   </div>
 
   <div id="published" class="col">
@@ -41,19 +36,12 @@
         <a href="/edit/{{filename}}">{{title}}</a>
         <span class="links">
           <a href="/vniverse" class="admin-view">view</a>
-          <a href="/delete/{{filename}}" class="admin-delete" data-confirm="Are you sure?" data-method="delete" rel="nofollow">x</a>
+          <a href="/delete/{{filename}}" class="delete-button admin-delete" rel="nofollow">x</a>
         </span>
       </h3>
     </li>
     {{/published}}
   </ul>
-
-
-  <nav class="pagination">
-    <span class="next">
-      <a href="/admin?post_page=2" rel="next"> Next &gt;</a>
-    </span>
-  </nav>
 
   </div>
   </div>

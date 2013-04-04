@@ -10,3 +10,7 @@ $(document).ready ->
       $('#fullscreen').hide();
     else
       $('#fullscreen').show();
+
+  $('.delete-button').click ->
+    if not confirm("Confirm delete?")
+      return false

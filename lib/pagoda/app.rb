@@ -44,6 +44,15 @@ module Shwedagon
       @site
     end
 
+    def repo
+      if not @repo
+        @repo = Grit::Repo.new(settings.blog) 
+      end
+      Dir.chdir(settings.blog)
+
+      @repo
+    end
+
     # Index of drafts and published posts
     get '/' do
       @drafts = jekyll_site.read_drafts.map do |post|
@@ -69,6 +78,16 @@ module Shwedagon
       mustache :home
     end
 
+
+    #Delete any post. Ideally should be post. For convenience, it is get. 
+    get '/delete/*' do
+      filename = params[:splat].first
+      full_file  = File.join(jekyll_site.source, *%w[_posts], filename)
+
+      repo.remove([full_file])
+      data = repo.commit_index "Deleted #{filename}"
+      redirect '/'
+    end
 
     # Edit any post
     get '/edit/*' do
@@ -97,19 +116,12 @@ module Shwedagon
     end
 
     get '/settings/pull' do
-
-      repo = Grit::Repo.new(settings.blog)
-
-      Dir.chdir(settings.blog)
-
+      
       data = repo.git.pull({}, "origin", "master")
       return data + " done"
     end
 
     get '/settings/push' do
-      repo = Grit::Repo.new(settings.blog) 
-      Dir.chdir(settings.blog)
-
       data = repo.git.push
       return data + " done"
     end
@@ -138,8 +150,6 @@ module Shwedagon
       filename  = params[:post][:name]
       post   = Jekyll::Post.new(jekyll_site, jekyll_site.source, '', filename)
 
-      puts params
-      
       if not (params[:post].has_key? 'draft' and params[:post]['draft'] == "on")
         post.data['published'] = true
       else
@@ -168,11 +178,6 @@ module Shwedagon
       else
         filename = update_post(params)
       end
-
-      repo = Grit::Repo.new(settings.blog)
-
-      # Git add works only when you do it from that path.
-      Dir.chdir(settings.blog)
 
       # Stage the file for commit
       repo.add File.join(jekyll_site.source, *%w[_posts], filename)
