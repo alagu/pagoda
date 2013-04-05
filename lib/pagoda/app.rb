@@ -156,7 +156,7 @@ module Shwedagon
         post.data['published'] = false
       end
 
-      puts post.data
+      post.data['title'] = params[:post][:title]
 
       content  = post.data.to_yaml + "---\n"
       content += params[:post][:content]
