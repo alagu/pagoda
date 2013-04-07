@@ -1,0 +1,7 @@
+rvm:
+  - 1.9.3
+notifications:
+  email:
+    - alagu@alagu.net
+before_install:
+ - sudo apt-get update
