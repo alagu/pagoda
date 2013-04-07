@@ -36,7 +36,7 @@ module Shwedagon
 
     def jekyll_site
       if not @site
-        config = Jekyll.configuration({'source' => settings.blog})
+        config  = Jekyll.configuration({'source' => settings.blog})
         @site   = Jekyll::Site.new(config)
         @site.read
       end
