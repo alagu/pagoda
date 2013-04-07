@@ -1,7 +1,6 @@
 # ~*~ encoding: utf-8 ~*~
 require 'cgi'
 require 'sinatra'
-require 'pagoda'
 require 'mustache/sinatra'
 require "sinatra/reloader"
 require 'jekyll'
