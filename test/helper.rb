@@ -5,8 +5,36 @@ require 'shoulda'
 require 'mocha/setup'
 require 'fileutils'
 require 'minitest/reporters'
+require 'jekyll'
+
+require 'pagoda/app'
 
 ENV['RACK_ENV'] = 'test'
+
+# Make sure we're in the test dir, the tests expect that to be the current
+# directory.
+TEST_DIR = File.join(File.dirname(__FILE__), *%w[.])
+
+def testpath(path)
+  File.join(TEST_DIR, path)
+end
+
+def cloned_testpath(path)
+  repo   = File.expand_path(testpath(path))
+  path   = File.dirname(repo)
+  cloned = File.join(path, self.class.name)
+  FileUtils.rm_rf(cloned)
+  Dir.chdir(path) do
+    %x{git clone #{File.basename(repo)} #{self.class.name} 2>/dev/null}
+  end
+  cloned
+end
+
+def commit_details
+  { :message => "Did something at #{Time.now}",
+    :name    => "Alagu",
+    :email   => "alagu@alagu.net" }
+end
 
 # test/spec/mini 3
 # http://gist.github.com/25455

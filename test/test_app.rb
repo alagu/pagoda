@@ -5,15 +5,28 @@ context "Frontend" do
   include Rack::Test::Methods
 
   setup do
+    @path = cloned_testpath("examples/sample-blog.git")
+    config  = Jekyll.configuration({'source' => @path})
+    @site   = Jekyll::Site.new(config)
+    Shwedagon::App.set :blog, @path
   end
 
   teardown do
+    FileUtils.rm_rf(@path)
   end
 
-  test "dummy test" do
-    sample_variable = "Hello"
+  test "Creates post" do
+    post 'save-post', :method => 'put', :post => 
+      { :title => 'Create new post test',
+        :content => 'Body content for new post'}
 
-    assert_equal sample_variable, "Hello"
+    get '/'
+
+    assert_match /Create new post test/, last_response.body
+  end
+
+  def app
+    Shwedagon::App
   end
 
 end
