@@ -15,6 +15,13 @@ context "Frontend" do
     FileUtils.rm_rf(@path)
   end
 
+  test "Basic listing for the example case" do
+    get '/'
+
+    assert_match /Pale Blue Dot/, last_response.body
+    assert_match /Hello World/, last_response.body
+  end
+
   test "Create a simple post" do
     post 'save-post', :method => 'put', :post => 
       { :title => 'Create new post test',
