@@ -53,28 +53,28 @@ module Shwedagon
       @repo
     end
 
-    # Index of drafts and published posts
-    get '/' do
-      @drafts = jekyll_site.read_drafts.map do |post|
+    # Gives out a sorted list of post template data
+    # for a post or draft
+    def posts_template_data(post_items)
+      template_data = post_items.map do |post|
         {
-          :title => post.data['title'],
+          :title    => post.data['title'],
           :filename => post.name,
           :date     => post.date
         }
       end
 
-      @drafts.sort! { |x,y| y[:date] <=> x[:date] }
+      template_data.sort! { |x,y| y[:date] <=> x[:date] }
 
-      @published = jekyll_site.posts.map do |post|
-        {
-          :title => post.data['title'],
-          :filename => post.name,
-          :date  => post.date
-        }
-      end
+      template_data
 
-      @published.sort! { |x,y| y[:date] <=> x[:date] }
-    
+    end
+
+    # Index of drafts and published posts
+    get '/' do
+      @drafts    = posts_template_data(jekyll_site.read_drafts)
+      @published = posts_template_data(jekyll_site.posts)
+
       mustache :home
     end
 
@@ -145,10 +145,9 @@ module Shwedagon
 
     # Update exiting post.
     def update_post(params)
-      
-
       filename  = params[:post][:name]
-      post   = Jekyll::Post.new(jekyll_site, jekyll_site.source, '', filename)
+      post      = Jekyll::Post.new(jekyll_site, jekyll_site.source, '', filename)
+
 
       if not (params[:post].has_key? 'draft' and params[:post]['draft'] == "on")
         post.data['published'] = true
