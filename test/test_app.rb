@@ -15,7 +15,7 @@ context "Frontend" do
     FileUtils.rm_rf(@path)
   end
 
-  test "Creates post" do
+  test "Create a simple post" do
     post 'save-post', :method => 'put', :post => 
       { :title => 'Create new post test',
         :content => 'Body content for new post'}
@@ -23,7 +23,11 @@ context "Frontend" do
     get '/'
 
     assert_match /Create new post test/, last_response.body
+
+    get '/edit/create-new-post.md'
+    assert_match /Body content for new post/, last_response.body
   end
+
 
   def app
     Shwedagon::App
