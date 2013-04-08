@@ -44,9 +44,7 @@ module Shwedagon
     end
 
     def repo
-      if not @repo
-        @repo = Grit::Repo.new(settings.blog) 
-      end
+      @repo ||= Grit::Repo.new(settings.blog) 
       Dir.chdir(settings.blog)
 
       @repo
