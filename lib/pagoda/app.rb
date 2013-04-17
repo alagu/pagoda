@@ -67,8 +67,16 @@ module Shwedagon
     end
 
     def post_exists?(post)
-      file_path  = File.join(jekyll_site.source, *%w[_posts], post)
+      file_path  = post_path(post)
       File.exists? file_path
+    end
+
+    def post_path(post)
+      File.join(jekyll_site.source, *%w[_posts], post)
+    end
+
+    def jekyll_post(post)
+      Jekyll::Post.new(jekyll_site, jekyll_site.source, '', post)
     end
 
     # Index of drafts and published posts
@@ -92,14 +100,13 @@ module Shwedagon
 
     # Edit any post
     get '/edit/*' do
-      file       =  params[:splat].first
+      post_file = params[:splat].first
 
-      if not post_exists?(file)
+      if not post_exists?(post_file)
         halt(404)
       end
 
-      post   = Jekyll::Post.new(jekyll_site, jekyll_site.source, '', file)
-      
+      post     = jekyll_post(post_file) 
       @title   = post.data['title']
       @content = post.content
       @name    = post.name
@@ -140,37 +147,29 @@ module Shwedagon
         'layout' => 'post',
         'published' => false }
 
-      content    = yaml_data.to_yaml + "---\n"
-      content   += params[:post][:content]
-      filename   = (post_date + " " + post_title).to_url + '.md'
-      file       = File.join(jekyll_site.source, *%w[_posts], filename)
+      content    = yaml_data.to_yaml + "---\n" + params[:post][:content]
+      post_file  = (post_date + " " + post_title).to_url + '.md'
+      file       = File.join(jekyll_site.source, *%w[_posts], post_file)
       File.open(file, 'w') { |file| file.write(content)}
-      filename
+      post_file
     end
 
     # Update exiting post.
     def update_post(params)
-      filename  = params[:post][:name]
-      post      = Jekyll::Post.new(jekyll_site, jekyll_site.source, '', filename)
+      post_file  = params[:post][:name]
+      post      = jekyll_post(post_file)
 
+      post.data['published'] = ! (params[:post].has_key? 'draft')
+      post.data['title']     = params[:post][:title]
 
-      if not (params[:post].has_key? 'draft' and params[:post]['draft'] == "on")
-        post.data['published'] = true
-      else
-        post.data['published'] = false
-      end
+      content  = post.data.to_yaml + "---\n" + params[:post][:content]
+      file     = post_path(post_file)
 
-      post.data['title'] = params[:post][:title]
-
-      content  = post.data.to_yaml + "---\n"
-      content += params[:post][:content]
-
-      file = File.join(jekyll_site.source, *%w[_posts], filename)
       if File.exists? file
         File.open(file, 'w') { |file| file.write(content)}
       end
 
-      filename
+      post_file
     end
 
     post '/save-post' do
