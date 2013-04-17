@@ -72,12 +72,13 @@ module Shwedagon
 
     #Delete any post. Ideally should be post. For convenience, it is get. 
     get '/delete/*' do
-      filename = params[:splat].first
-      full_file  = File.join(jekyll_site.source, *%w[_posts], filename)
+      post_file = params[:splat].first
+      full_path = post_path(post_file)
 
-      repo.remove([full_file])
-      data = repo.commit_index "Deleted #{filename}"
-      redirect '/'
+      repo.remove([full_path])
+      data = repo.commit_index "Deleted #{post_file}"
+      
+      redirect "/"
     end
 
     # Edit any post
@@ -125,15 +126,17 @@ module Shwedagon
       site   = Jekyll::Site.new(config)
 
       if params[:method] == 'put'
-        filename = create_new_post(params)
+        filename = create_new_post(params)        
+        log_message = "Created #{filename}"
       else
         filename = update_post(params)
+        log_message = "Changed #{filename}"
       end
 
       # Stage the file for commit
       repo.add File.join(jekyll_site.source, *%w[_posts], filename)
 
-      data = repo.commit_index "Changed #{filename}"
+      data = repo.commit_index log_message
 
       redirect '/edit/' + filename
     end

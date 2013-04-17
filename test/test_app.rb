@@ -34,11 +34,13 @@ context "Frontend" do
     post_file = create_post('Create new post test', 'Body content for new post')
     assert_equal last_response.status, 302
 
+    # Check whether it has been committed
+    repo = Grit::Repo.new @path
+    assert_equal repo.log.first.message, "Created #{post_file}"
 
     get "/"
     assert_match /Create new post test/, last_response.body
 
-    post_date  = 
     get "/edit/#{post_file}"
 
     assert_equal last_response.status, 200
@@ -48,18 +50,27 @@ context "Frontend" do
   test "Edit a post" do
     post_file = create_post('Editable post', 'Text 1')
     
+    # Check whether it has been committed
+    repo = Grit::Repo.new @path
+    assert_equal repo.log.first.message, "Created #{post_file}"
+
+    
     get "/edit/#{post_file}"
     assert_equal last_response.status, 200    
     assert_match /Text 1/, last_response.body
     assert_no_match /Text 1 and Text 2/, last_response.body
-
 
     post "/save-post", :post => 
       { :title   => 'Editable post',
         :content => 'Text 1 and Text 2',
         :name    => post_file}
 
-    assert_equal last_response.status, 302
+    assert_equal last_response.status, 302    
+    
+    # Check repo for edit
+    assert_equal repo.log.first.message, "Changed #{post_file}"
+
+
 
     get "/edit/#{post_file}"
     assert_match /Text 1 and Text 2/, last_response.body
@@ -71,8 +82,14 @@ context "Frontend" do
     get "/edit/#{post_file}"
     assert_equal last_response.status, 200
 
+
     get "/delete/#{post_file}"
     assert_equal last_response.status, 302
+
+    # Check whether it has been deleted
+    repo = Grit::Repo.new @path
+    assert_equal repo.log.first.message, "Deleted #{post_file}"
+
 
     get "/edit/#{post_file}"
     assert_equal last_response.status, 404

@@ -6,6 +6,7 @@ require 'mocha/setup'
 require 'fileutils'
 require 'minitest/reporters'
 require 'jekyll'
+require 'grit'
 
 require 'pagoda/app'
 
