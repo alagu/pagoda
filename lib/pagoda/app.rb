@@ -10,6 +10,7 @@ require 'grit'
 require 'stringex'
 
 require 'pagoda/views/layout'
+require 'pagoda/helper'
 
 # Sinatra based frontend
 module Shwedagon
@@ -33,52 +34,38 @@ module Shwedagon
       :views => "#{dir}/views"
     }
 
-    def jekyll_site
-      if not @site
-        config  = Jekyll.configuration({'source' => settings.blog})
-        @site   = Jekyll::Site.new(config)
-        @site.read
+    # Create a new post from scratch. Return filename
+    # This would not commit the file.
+    def create_new_post(params)      
+      post_title = params['post']['title']
+      post_date  = (Time.now).strftime("%Y-%m-%d")
+      yaml_data  = { 'title' => post_title,
+        'layout' => 'post',
+        'published' => false }
+
+      content    = yaml_data.to_yaml + "---\n" + params[:post][:content]
+      post_file  = (post_date + " " + post_title).to_url + '.md'
+      file       = File.join(jekyll_site.source, *%w[_posts], post_file)
+      File.open(file, 'w') { |file| file.write(content)}
+      post_file
+    end
+
+    # Update exiting post.
+    def update_post(params)
+      post_file  = params[:post][:name]
+      post      = jekyll_post(post_file)
+
+      post.data['published'] = ! (params[:post].has_key? 'draft')
+      post.data['title']     = params[:post][:title]
+
+      content  = post.data.to_yaml + "---\n" + params[:post][:content]
+      file     = post_path(post_file)
+
+      if File.exists? file
+        File.open(file, 'w') { |file| file.write(content)}
       end
 
-      @site
-    end
-
-    def repo
-      @repo ||= Grit::Repo.new(settings.blog) 
-      Dir.chdir(settings.blog)
-
-      @repo
-    end
-
-    # Gives out a sorted list of post template data
-    # for a post or draft
-    def posts_template_data(post_items)
-      template_data = post_items.map do |post|
-        {
-          :title    => post.data['title'],
-          :filename => post.name,
-          :date     => post.date
-        }
-      end
-
-      template_data.sort! { |x,y| y[:date] <=> x[:date] }
-
-      template_data
-    end
-
-    # Shortcut for checking whether the post exists
-    def post_exists?(post_file)
-      File.exists? post_path(post_file)
-    end
-
-    # Expanded post path of the post file
-    def post_path(post_file)
-      File.join(jekyll_site.source, *%w[_posts], post_file)
-    end
-
-    # Jekyll instance of post file
-    def jekyll_post(post_file)
-      Jekyll::Post.new(jekyll_site, jekyll_site.source, '', post_file)
+      post_file
     end
 
     # Index of drafts and published posts
@@ -138,40 +125,6 @@ module Shwedagon
     get '/settings/push' do
       data = repo.git.push
       return data + " done"
-    end
-
-    # Create a new post from scratch. Return filename
-    # This would not commit the file.
-    def create_new_post(params)      
-      post_title = params['post']['title']
-      post_date  = (Time.now).strftime("%Y-%m-%d")
-      yaml_data  = { 'title' => post_title,
-        'layout' => 'post',
-        'published' => false }
-
-      content    = yaml_data.to_yaml + "---\n" + params[:post][:content]
-      post_file  = (post_date + " " + post_title).to_url + '.md'
-      file       = File.join(jekyll_site.source, *%w[_posts], post_file)
-      File.open(file, 'w') { |file| file.write(content)}
-      post_file
-    end
-
-    # Update exiting post.
-    def update_post(params)
-      post_file  = params[:post][:name]
-      post      = jekyll_post(post_file)
-
-      post.data['published'] = ! (params[:post].has_key? 'draft')
-      post.data['title']     = params[:post][:title]
-
-      content  = post.data.to_yaml + "---\n" + params[:post][:content]
-      file     = post_path(post_file)
-
-      if File.exists? file
-        File.open(file, 'w') { |file| file.write(content)}
-      end
-
-      post_file
     end
 
     post '/save-post' do
