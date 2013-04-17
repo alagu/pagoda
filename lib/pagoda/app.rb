@@ -66,17 +66,19 @@ module Shwedagon
       template_data
     end
 
-    def post_exists?(post)
-      file_path  = post_path(post)
-      File.exists? file_path
+    # Shortcut for checking whether the post exists
+    def post_exists?(post_file)
+      File.exists? post_path(post_file)
     end
 
-    def post_path(post)
-      File.join(jekyll_site.source, *%w[_posts], post)
+    # Expanded post path of the post file
+    def post_path(post_file)
+      File.join(jekyll_site.source, *%w[_posts], post_file)
     end
 
-    def jekyll_post(post)
-      Jekyll::Post.new(jekyll_site, jekyll_site.source, '', post)
+    # Jekyll instance of post file
+    def jekyll_post(post_file)
+      Jekyll::Post.new(jekyll_site, jekyll_site.source, '', post_file)
     end
 
     # Index of drafts and published posts
