@@ -64,7 +64,11 @@ module Shwedagon
       template_data.sort! { |x,y| y[:date] <=> x[:date] }
 
       template_data
+    end
 
+    def post_exists?(post)
+      file_path  = File.join(jekyll_site.source, *%w[_posts], post)
+      File.exists? file_path
     end
 
     # Index of drafts and published posts
@@ -88,7 +92,11 @@ module Shwedagon
 
     # Edit any post
     get '/edit/*' do
-      file =  params[:splat].first
+      file       =  params[:splat].first
+
+      if not post_exists?(file)
+        halt(404)
+      end
 
       post   = Jekyll::Post.new(jekyll_site, jekyll_site.source, '', file)
       

@@ -52,7 +52,7 @@ context "Frontend" do
     assert_equal last_response.status, 302
 
     get '/edit/deletable-post.md'
-    assert_equal 404, last_response.status
+    assert_equal last_response.status, 404
   end
 
   def app
