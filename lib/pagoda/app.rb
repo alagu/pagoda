@@ -11,28 +11,11 @@ require 'stringex'
 
 require 'pagoda/views/layout'
 require 'pagoda/helper'
+require 'pagoda/config'
 
 # Sinatra based frontend
 module Shwedagon
   class App < Sinatra::Base
-    register Mustache::Sinatra
-    register Sinatra::Reloader
-
-
-    dir = File.dirname(File.expand_path(__FILE__))
-    set :public_folder, "#{dir}/public"
-    set :static, true
-
-    set :mustache, {
-      # Tell mustache where the Views constant lives
-      :namespace => Shwedagon,
-
-      # Mustache templates live here
-      :templates => "#{dir}/templates",
-
-      # Tell mustache where the views are
-      :views => "#{dir}/views"
-    }
 
     # Create a new post from scratch. Return filename
     # This would not commit the file.
@@ -50,20 +33,30 @@ module Shwedagon
       post_file
     end
 
+
+    # Merge existing yaml with post params
+    def merge_yaml(yaml, params)
+      yaml['published'] = !(params[:post].has_key? 'draft')
+      yaml['title']     = params[:post][:title]
+
+      yaml
+    end
+
+    def write_post_contents(content, yaml, post_file)
+      writeable_content  = yaml.to_yaml + "---\n" + content
+      file_path          = post_path(post_file)
+
+      if File.exists? file_path
+        File.open(file_path, 'w') { |file| file.write(content)}
+      end
+    end
+
     # Update exiting post.
     def update_post(params)
-      post_file  = params[:post][:name]
-      post      = jekyll_post(post_file)
-
-      post.data['published'] = ! (params[:post].has_key? 'draft')
-      post.data['title']     = params[:post][:title]
-
-      content  = post.data.to_yaml + "---\n" + params[:post][:content]
-      file     = post_path(post_file)
-
-      if File.exists? file
-        File.open(file, 'w') { |file| file.write(content)}
-      end
+      post_file   = params[:post][:name]
+      post        = jekyll_post(post_file)
+      yaml_config = merge_config(post.data, params[:post])
+      write_post_contents(params[:post][:content], yaml_config)
 
       post_file
     end

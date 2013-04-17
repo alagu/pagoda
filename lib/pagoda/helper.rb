@@ -1,4 +1,4 @@
-
+# Helper functions for pagoda app
 module Shwedagon
   class App < Sinatra::Base
     
