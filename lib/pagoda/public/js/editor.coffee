@@ -22,3 +22,12 @@ $(document).ready ->
   $('.delete-button').click ->
     if not confirm("Confirm delete?")
       return false
+
+  $(document).bind('keydown', 'ctrl+f', ->
+    screenfull.request())
+
+  $(document).bind('keydown', 'meta+f', ->
+    screenfull.request())
+
+  $(document).bind('keydown', 'meta+s', ->
+    $('.edit_post').submit())
