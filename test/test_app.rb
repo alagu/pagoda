@@ -10,7 +10,14 @@ context "Frontend" do
   end
 
   teardown do
+    Dir.chdir("/")
     FileUtils.rm_rf(@path)
+  end
+
+  def create_post(title, content)
+   post 'save-post', :method => 'put', :post => 
+    { :title => title ,
+      :content => content}
   end
 
   test "Basic listing for the example case" do
@@ -21,9 +28,7 @@ context "Frontend" do
   end
 
   test "Create a simple post" do
-    post 'save-post', :method => 'put', :post => 
-      { :title => 'Create new post test',
-        :content => 'Body content for new post'}
+    create_post('Create new post test', 'Body content for new post')
     assert_equal last_response.status, 302
 
 
@@ -38,18 +43,16 @@ context "Frontend" do
   end
 
   test "Delete a post" do
-    post 'save-post', :method => 'put', :post => 
-      { :title => 'Deletable post',
-        :content => 'Body content for new post'}
+    create_post('Deletable post', 'Body content for new post')
 
     get '/'
     assert_match /Deletable post/, last_response.body
 
     get '/delete/deletable-post.md'
-    assert_match 302, last_response.status
+    assert_equal last_response.status, 302
 
-    get '/edit/create-new-post.md'
-    assert_match 404, last_response.status
+    get '/edit/deletable-post.md'
+    assert_equal 404, last_response.status
   end
 
   def app
