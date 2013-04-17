@@ -4,7 +4,6 @@ require 'sinatra'
 require 'mustache/sinatra'
 require "sinatra/reloader"
 require 'jekyll'
-require 'jekyll-mod'
 require 'json'
 require 'grit'
 require 'stringex'
@@ -12,6 +11,7 @@ require 'stringex'
 require 'pagoda/views/layout'
 require 'pagoda/helper'
 require 'pagoda/config'
+require 'pagoda/jekyll-mod'
 
 # Sinatra based frontend
 module Shwedagon
@@ -35,7 +35,7 @@ module Shwedagon
 
 
     # Merge existing yaml with post params
-    def merge_yaml(yaml, params)
+    def merge_config(yaml, params)
       yaml['published'] = !(params[:post].has_key? 'draft')
       yaml['title']     = params[:post][:title]
 
@@ -47,7 +47,7 @@ module Shwedagon
       file_path          = post_path(post_file)
 
       if File.exists? file_path
-        File.open(file_path, 'w') { |file| file.write(content)}
+        File.open(file_path, 'w') { |file| file.write(writeable_content)}
       end
     end
 
@@ -55,8 +55,8 @@ module Shwedagon
     def update_post(params)
       post_file   = params[:post][:name]
       post        = jekyll_post(post_file)
-      yaml_config = merge_config(post.data, params[:post])
-      write_post_contents(params[:post][:content], yaml_config)
+      yaml_config = merge_config(post.data, params)
+      write_post_contents(params[:post][:content], yaml_config, post_file)
 
       post_file
     end

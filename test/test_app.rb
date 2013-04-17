@@ -15,9 +15,12 @@ context "Frontend" do
   end
 
   def create_post(title, content)
-   post 'save-post', :method => 'put', :post => 
-    { :title => title ,
-      :content => content}
+    post 'save-post', :method => 'put', :post => 
+      { :title => title ,
+        :content => content}
+
+    post_date = (Time.now).strftime("%Y-%m-%d")
+    (post_date + " " + title).to_url + '.md'
   end
 
   test "Basic listing for the example case" do
@@ -28,30 +31,50 @@ context "Frontend" do
   end
 
   test "Create a simple post" do
-    create_post('Create new post test', 'Body content for new post')
+    post_file = create_post('Create new post test', 'Body content for new post')
     assert_equal last_response.status, 302
 
 
-    get '/'
+    get "/"
     assert_match /Create new post test/, last_response.body
 
-    post_date  = (Time.now).strftime("%Y-%m-%d")
-    get "/edit/#{post_date}-create-new-post-test.md"
+    post_date  = 
+    get "/edit/#{post_file}"
 
     assert_equal last_response.status, 200
     assert_match /Body content for new post/, last_response.body
   end
 
-  test "Delete a post" do
-    create_post('Deletable post', 'Body content for new post')
+  test "Edit a post" do
+    post_file = create_post('Editable post', 'Text 1')
+    
+    get "/edit/#{post_file}"
+    assert_equal last_response.status, 200    
+    assert_match /Text 1/, last_response.body
+    assert_no_match /Text 1 and Text 2/, last_response.body
 
-    get '/'
-    assert_match /Deletable post/, last_response.body
 
-    get '/delete/deletable-post.md'
+    post "/save-post", :post => 
+      { :title   => 'Editable post',
+        :content => 'Text 1 and Text 2',
+        :name    => post_file}
+
     assert_equal last_response.status, 302
 
-    get '/edit/deletable-post.md'
+    get "/edit/#{post_file}"
+    assert_match /Text 1 and Text 2/, last_response.body
+  end
+
+  test "Delete a post" do
+    post_file = create_post('Deletable post', 'Body content for new post')
+
+    get "/edit/#{post_file}"
+    assert_equal last_response.status, 200
+
+    get "/delete/#{post_file}"
+    assert_equal last_response.status, 302
+
+    get "/edit/#{post_file}"
     assert_equal last_response.status, 404
   end
 
