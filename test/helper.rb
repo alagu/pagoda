@@ -28,6 +28,8 @@ def cloned_testpath(path)
   Dir.chdir("/")
   Dir.chdir("/") do
     %x{git clone #{repo} #{cloned}}
+    %x{git config --global user.email "alagu@alagu.net"}
+    %x{git config --global user.name "Alagu"}
   end
   cloned
 end

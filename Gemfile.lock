@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pagoda (0.0.1)
+    pagoda-jekyll (0.0.2)
       grit
       jekyll
       json
@@ -112,7 +112,7 @@ DEPENDENCIES
   compass
   fssm
   minitest-reporters
-  pagoda!
+  pagoda-jekyll!
   rack-test
   rake (~> 10.0.3)
   shoulda
