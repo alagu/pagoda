@@ -24,19 +24,6 @@ context "Frontend" do
     (post_date + " " + title).to_url + '.md'
   end
 
-  test "Testing git" do
-    puts "---------------"
-    puts @path
-    Dir.chdir @path do
-      puts %x{git config -l}
-      puts %x{echo "testing" > test.md}
-      puts %x{git add test.md}
-      puts %x{git commit -am "new test file"}
-      puts %x{git log -n 1}
-    end
-    puts "---------------"
-  end
-
   test "Basic listing for the example case" do
     get '/'
 
