@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = 'pagoda-jekyll'
 
   s.summary     = "A simple admin for Jekyll"
-  s.description = "A simple admin for Jekyll"
+  s.description = "Admin interface for Jekyll that makes you comfortable writing"
 
   s.authors  = ["Alagu"]
   s.email    = 'alagu@alagu.net'
