@@ -2,3 +2,12 @@ Pagoda [![Build Status](https://travis-ci.org/alagu/pagoda.png?branch=master)](h
 =========
 
 Beautiful editor for your Jekyll blog
+
+
+Install
+=======
+
+```
+  gem install pagoda-jekyll
+  pagoda .
+```
