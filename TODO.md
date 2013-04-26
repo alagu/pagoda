@@ -5,8 +5,8 @@ Before shipping
 
 All that someone has to do:
 
-1. Gem install pagoda-jekyll
-2. pagoda .
+1. ~~`gem install pagoda-jekyll`~~
+2. ~~`pagoda .`~~
 
 Features missing:
 1. Command+Save - Autosave - Change save icon
@@ -14,7 +14,7 @@ Features missing:
 3. Publish/Draft - UX
 
 Dislikes:
-1. Travis failure because of grit
+1. ~~ Travis failure because of grit ~~
 
 Remove
-1. Page Variables
+1. ~~ Page Variables ~~
