@@ -105,10 +105,18 @@ $(document).ready ->
     $("#fullscreen").tipTip({delay: 200, defaultPosition: 'right'})
 
 
+  focus_to_type =->
+    if not is_edit_page() and ($('#post_title').val() == '')
+      $('#post_title').focus()
+    else
+      $('#post_content').focus()
+
+
   init =->
     handle_events()
     keyboard_events()
     show_shortcuts()
+    focus_to_type()
 
 
   init()
