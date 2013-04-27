@@ -1,5 +1,8 @@
 $(document).ready ->
 
+  key.filter = (e)->
+    true
+
   $('#post-editor #post_title').autosize({append: "\n"})
 
   $("#fullscreen").click (e)->
@@ -23,11 +26,15 @@ $(document).ready ->
     if not confirm("Confirm delete?")
       return false
 
-  $(document).bind('keydown', 'ctrl+f', ->
-    screenfull.request())
+  key('⌘+enter, ctrl+enter', (e)->
+    screenfull.toggle()
+  )
 
-  $(document).bind('keydown', 'meta+f', ->
-    screenfull.request())
-
-  $(document).bind('keydown', 'meta+s', ->
-    $('.edit_post').submit())
+  key('⌘+s, ctrl+s',(e) ->
+    if window.location.pathname.indexOf('edit') == -1
+      $('.edit_post').submit()
+    else
+      console.log "Ajax save should happen here"
+      
+    false
+  )

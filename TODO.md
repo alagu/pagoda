@@ -10,8 +10,8 @@ All that someone has to do:
 Features missing:
 
 0. Editing user experience - new markdown
-1. Command+Save - Autosave - Change save icon
-2. Command+Enter - Full Screen
+1. Command+Save - Autosave - Save interaction
+2. ~~Command+Enter - Full Screen~~
 3. Publish/Draft - UX
 
 
