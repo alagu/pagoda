@@ -55,12 +55,12 @@ $(document).ready ->
 
     screenfull.onchange = ->
       if screenfull.isFullscreen
-        $('#fullscreen').hide();
+        $('#fullscreen').hide()
+        $('#post_content').focus()
 
         setTimeout( ->
-          console.log $(window).height()
           rows = Math.ceil($(window).height()/40)
-          $('#post_content').attr('rows', rows);
+          $('#post_content').attr('rows', rows)
         , 1000)
 
       else
