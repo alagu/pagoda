@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 1.8.7"
 
   s.name              = 'pagoda-jekyll'
-  s.version           = '0.0.2'
+  s.version           = '0.0.3'
   s.date              = '2013-03-26'
   s.rubyforge_project = 'pagoda-jekyll'
 
@@ -39,38 +39,15 @@ Gem::Specification.new do |s|
 
 
   # = MANIFEST =
-  s.files = %w[
-    bin/pagoda
+  s.files = Dir['bin/*'] + Dir['lib/**/*'] +
+  %w[
     config.rb
     config.ru
     Gemfile
     Gemfile.lock
-    lib/pagoda/app.rb
-    lib/pagoda/config.rb
-    lib/pagoda/helper.rb
-    lib/pagoda/jekyll-mod.rb
-    lib/pagoda/public/css/pagoda.css
-    lib/pagoda/public/images/fullscreen.png
-    lib/pagoda/public/js/editor.js
-    lib/pagoda/public/js/jquery.autosize.js
-    lib/pagoda/public/js/jquery.hotkeys.js
-    lib/pagoda/public/js/jquery.js
-    lib/pagoda/public/js/screenfull.js
-    lib/pagoda/templates/edit.mustache
-    lib/pagoda/templates/editor_area.mustache
-    lib/pagoda/templates/home.mustache
-    lib/pagoda/templates/layout.mustache
-    lib/pagoda/templates/new_post.mustache
-    lib/pagoda/templates/settings.mustache
-    lib/pagoda/views/edit.rb
-    lib/pagoda/views/home.rb
-    lib/pagoda/views/layout.rb
-    lib/pagoda/views/new_post.rb
-    lib/pagoda/views/settings.rb
     LICENSE
     pagoda.gemspec
     Rakefile
-    README.md
     unicorn.rb
   ]
   # = MANIFEST =
