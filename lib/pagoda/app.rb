@@ -138,7 +138,11 @@ module Shwedagon
 
       data = repo.commit_index log_message
 
-      redirect '/edit/' + filename
+      if params[:ajax]
+        {:status => 'OK'}.to_json
+      else
+        redirect '/edit/' + filename
+      end
     end
 
   end

@@ -71,11 +71,24 @@ context "Frontend" do
     # Check repo for edit
     assert_equal repo.log.first.message, "Changed #{post_file}"
 
-
-
     get "/edit/#{post_file}"
     assert_match /Text 1 and Text 2/, last_response.body
   end
+
+  test "Edit post ajax" do
+    post_file = create_post('Editable post', 'Text 1')
+
+    post "/save-post", 
+      :post => 
+        { :title   => 'Editable post',
+          :content => 'Text 1 and Text 2',
+          :name    => post_file},
+      :ajax => true
+
+    assert_equal last_response.status, 200
+    assert_match /"status":"OK"/, last_response.body
+  end
+
 
   test "Delete a post" do
     post_file = create_post('Deletable post', 'Body content for new post')
