@@ -59,13 +59,13 @@ $(document).ready ->
         $('#post_content').focus()
 
         setTimeout( ->
-          rows = Math.ceil($(window).height()/40)
+          rows = Math.ceil($(window).height()/48)
           $('#post_content').attr('rows', rows)
         , 1000)
 
       else
         $('#fullscreen').show();
-        $('#post_content').attr('rows', 18);
+        $('#post_content').attr('rows', 15);
 
     $('.delete-button').click ->
       if not confirm("Confirm delete?")

@@ -143,7 +143,7 @@ code {
 }
 
 .contain {
-  width: 600px;
+  width: 960px;
   position: relative;
 }
 
@@ -164,7 +164,7 @@ code {
 }
 #publish-bar .contain {
   margin: 0 auto;
-  width: 600px;
+  width: 960px;
 }
 #publish-bar input[type=text] {
   border: none;
@@ -445,15 +445,15 @@ fieldset.markdown {
 }
 
 #split {
-  width: 716px;
+  width: 960px;
   margin: 0 auto;
 }
 #split #post-editor {
-  width: 700px;
+  width: 960px;
   float: left;
 }
 #split #fullscreen {
-  float: left;
+  float: right;
   position: relative;
   top: 35px;
   border: 0 none;

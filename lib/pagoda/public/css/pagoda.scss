@@ -138,7 +138,7 @@ code {
 }
 
 .contain {
-  width: 600px;
+  width: 960px;
   position: relative;
 }
 
@@ -159,7 +159,7 @@ code {
 
   .contain {
     margin: 0 auto;
-    width: 600px;
+    width: 960px;
   }
 
   input[type=text] {
@@ -462,16 +462,16 @@ fieldset.markdown {
 }
 
 #split {
-  width: 716px;
+  width: 960px;
   margin: 0 auto;
   
   #post-editor {
-    width: 700px;
+    width: 960px;
     float: left;
   }
 
   #fullscreen {
-    float: left;
+    float: right;
     position: relative;
     top: 35px;
     border: 0 none;
