@@ -26,14 +26,14 @@ $(document).ready ->
   # Save post
   save_post = ->
     set_save_button('saving')
-    draft =
+    draft = if $('#post_draft').is(':checked') then 'on' else 'off'
 
     post_obj = 
       post : 
         title   : $('#post_title').val()
         content : $('#post_content').val()
         name    : $('#post_name').val()
-        draft   : $('#post_draft').val()
+        draft   : draft
 
       ajax    : true
 
