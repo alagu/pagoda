@@ -7,5 +7,5 @@ require 'pagoda/app'
 
 use Rack::ShowExceptions
 
-Shwedagon::App.set :blog, '../example-jekyll/'
+Shwedagon::App.set :blog, '../blog/'
 run Shwedagon::App.new
