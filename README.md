@@ -6,6 +6,7 @@ Install
 =======
 
 ```
+  cd your-jekyll-blog-repo/
   gem install pagoda-jekyll
   pagoda .
 ```
