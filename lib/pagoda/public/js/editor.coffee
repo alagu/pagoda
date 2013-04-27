@@ -6,7 +6,7 @@ $(document).ready ->
     true
 
   is_edit_page = ->
-    window.location.pathname.indexOf('edit')
+    window.location.pathname.indexOf('edit') != -1
 
   set_save_button = (status)->
     if(status == 'saving')
