@@ -5,17 +5,22 @@ $(document).ready ->
   key.filter = (e)->
     true
 
+  is_edit_page = ->
+    window.location.pathname.indexOf('edit')
+
   set_save_button = (status)->
     if(status == 'saving')
       $('#save-button').val('Saving')
-      $('#save-button').addClass('saving')
+      $('#save-button').addClass('post-saving')
     else if status == 'saved'
       $('#save-button').val('Saved')
-      $('#save-button').removeClass('saving')
-      setTimeout((->$('#save-button').val('Save')), 1000)
+      setTimeout((->
+        $('#save-button').val('Save')
+        $('#save-button').removeClass('post-saving')
+      ), 1000)
     else if status == 'error'
       $('#save-button').val('Error')
-      $('#save-button').removeClass('saving')
+      $('#save-button').removeClass('post-saving')
       setTimeout((->set_save_button('saved')),2000)
 
   # Save post
@@ -32,19 +37,14 @@ $(document).ready ->
 
       ajax    : true
 
-    try 
-      $.post('/save-post', post_obj, (data)->
-        response = $.parseJSON(data)
-        if response['status'] == 'OK'
-          setTimeout((->set_save_button('saved')),1000)
-        else
-          set_save_button('error')
-      )
-    catch error
-      set_save_button('error')
-
-
-    console.log(post_obj)
+    $.post('/save-post', post_obj, (data)->
+      response = $.parseJSON(data)
+      if response['status'] == 'OK'
+        setTimeout((->set_save_button('saved')),1000)
+      else
+        set_save_button('error')
+    )
+    .fail((->set_save_button('error')))
 
   # Dom invoked events
   handle_events =->
@@ -71,13 +71,19 @@ $(document).ready ->
       if not confirm("Confirm delete?")
         return false
 
+    if is_edit_page()
+      $('#save-button').click( ->
+        save_post()
+        false
+      )
+
   keyboard_events =->
     key('⌘+enter, ctrl+enter', (e)->
       screenfull.toggle()
     )
 
     key('⌘+s, ctrl+s',(e) ->
-      if window.location.pathname.indexOf('edit') == -1
+      if not is_edit_page()
         $('.edit_post').submit()
       else
         save_post()

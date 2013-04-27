@@ -545,3 +545,7 @@ body {
   display: inline-block;
   width: 350px;
 }
+
+#publish-bar input[type=submit].post-saving {
+  background: #40A4FB;
+}
