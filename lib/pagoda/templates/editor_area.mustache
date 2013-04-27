@@ -2,7 +2,7 @@
   <div id="post-editor" class="split-section">
     <div id="text-title">
       <textarea cols="40" id="post_title" name="post[title]" placeholder="Title here" rows="1">{{#ptitle}}{{ ptitle }}{{/ptitle}}{{^ptitle}}{{ title }}{{/ptitle}}</textarea>
-      <input type="hidden" name="post[name]" value="{{ name }}">
+      <input type="hidden" id="post_name" name="post[name]" value="{{ name }}">
     </div>
 
     <div id="text-content">
