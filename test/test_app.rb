@@ -14,16 +14,6 @@ context "Frontend" do
     FileUtils.rm_rf(@path)
   end
 
-
-  def create_post(title, content)
-    post 'save-post', :method => 'put', :post => 
-      { :title => title ,
-        :content => content}
-
-    post_date = (Time.now).strftime("%Y-%m-%d")
-    (post_date + " " + title).to_url + '.md'
-  end
-
   test "Basic listing for the example case" do
     get '/'
 
@@ -87,6 +77,39 @@ context "Frontend" do
 
     assert_equal last_response.status, 200
     assert_match /"status":"OK"/, last_response.body
+  end
+
+  test "Draft and Undraft" do
+    post_file   = create_post('Draftable post', 'Text 1')
+
+    # Verify whether it is in draft
+    post_object = jekyll_post_object(@path, post_file)
+    assert_equal post_object.data['published'], false
+    
+    post "/save-post", 
+         :post => 
+           { :title   => 'Draftable post',
+             :content => 'Text 1',
+             :name    => post_file,
+             :draft   => 'off'
+           }
+
+    # Verify whehter it is published
+    post_object = jekyll_post_object(@path, post_file)
+    assert_equal post_object.data['published'], true
+
+    # Make it draft again.
+    post "/save-post", 
+         :post => 
+           { :title   => 'Draftable post',
+             :content => 'Text 1',
+             :name    => post_file,
+             :draft   => 'on'
+           }
+
+    post_object = jekyll_post_object(@path, post_file)
+    assert_equal post_object.data['published'], false
+
   end
 
 

@@ -36,7 +36,8 @@ module Shwedagon
 
     # Merge existing yaml with post params
     def merge_config(yaml, params)
-      yaml['published'] = !(params[:post].has_key? 'draft')
+      yaml['published'] = !(params[:post].has_key? 'draft' and
+        params[:post]['draft'] == 'on')
       yaml['title']     = params[:post][:title]
 
       yaml

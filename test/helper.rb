@@ -20,6 +20,7 @@ def testpath(path)
   File.join(TEST_DIR, path)
 end
 
+# Cloned test path
 def cloned_testpath(path)
   repo   = File.expand_path(testpath(path))
   path   = File.dirname(repo)
@@ -32,6 +33,22 @@ def cloned_testpath(path)
     %x{git config --global user.name "Alagu"}
   end
   cloned
+end
+
+# Jekyll instance of post file
+def jekyll_post_object(path, file)
+  config = Jekyll.configuration({'source' => path})
+  site   = Jekyll::Site.new(config)
+  Jekyll::Post.new(site, site.source, '', file)
+end
+
+def create_post(title, content)
+  post 'save-post', :method => 'put', :post => 
+    { :title => title ,
+      :content => content}
+
+  post_date = (Time.now).strftime("%Y-%m-%d")
+  (post_date + " " + title).to_url + '.md'
 end
 
 def commit_details

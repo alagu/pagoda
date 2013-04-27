@@ -21,12 +21,15 @@ $(document).ready ->
   # Save post
   save_post = ->
     set_save_button('saving')
+    draft =
 
     post_obj = 
       post : 
         title   : $('#post_title').val()
         content : $('#post_content').val()
         name    : $('#post_name').val()
+        draft   : $('#post_draft').val()
+
       ajax    : true
 
     try 
