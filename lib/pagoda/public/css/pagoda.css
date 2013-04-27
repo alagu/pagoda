@@ -491,6 +491,7 @@ fieldset.markdown {
   position: relative;
   margin: 0;
   resize: none;
+  font-size: 20px;
 }
 
 #post_title {
