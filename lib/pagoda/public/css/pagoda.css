@@ -494,8 +494,11 @@ fieldset.markdown {
   font-size: 20px;
 }
 
-#post_title {
+textarea#post_title {
   resize: none;
+  font-family: 'Asap', sans-serif;
+  font-size: 40px;
+  font-weight: normal;
 }
 
 form .permalink {
