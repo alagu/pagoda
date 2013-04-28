@@ -8,10 +8,6 @@ module Shwedagon
 
       attr_reader :name, :path
 
-      def escaped_name
-        CGI.escape(@name)
-      end
-
       def title
         "Home"
       end
