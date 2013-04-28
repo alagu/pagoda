@@ -1,4 +1,7 @@
 require 'rubygems'
+require 'simplecov'
+SimpleCov.start
+
 require 'rack/test'
 require 'test/unit'
 require 'shoulda'
