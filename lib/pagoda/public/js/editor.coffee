@@ -8,6 +8,9 @@ $(document).ready ->
   is_edit_page = ->
     window.location.pathname.indexOf('edit') != -1
 
+  has_editor_area = ->
+    $('#post-editor').length > 0
+
   set_save_button = (status)->
     if(status == 'saving')
       $('#save-button').val('Saving')
@@ -111,12 +114,16 @@ $(document).ready ->
     else
       $('#post_content').focus()
 
+  showdown_live =->
+    if has_editor_area()
+      showdown_live = new ShowdownLive('#post_content')
+
 
   init =->
     handle_events()
     keyboard_events()
     show_shortcuts()
     focus_to_type()
-
+    showdown_live()
 
   init()

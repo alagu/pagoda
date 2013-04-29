@@ -5,7 +5,6 @@ $linkhover: red;
 div:before, div:after {content:''; display:table;}
 
 aside {position:relative; display:block;}
-ul {list-style-type:none;}
 .hide {visibility:hidden; height:1px; clip:rect(0 0 0 0); position:absolute;}
 input, textarea {outline:none; background:none;}
 
@@ -508,7 +507,7 @@ fieldset.markdown {
   line-height: 45px;
 }
 
-#post_content {
+.post_content {
   border: none;
   width: 100%;
   position: relative;

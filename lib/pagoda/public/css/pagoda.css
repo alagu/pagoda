@@ -9,10 +9,6 @@ aside {
   display: block;
 }
 
-ul {
-  list-style-type: none;
-}
-
 .hide {
   visibility: hidden;
   height: 1px;
@@ -485,7 +481,7 @@ fieldset.markdown {
   line-height: 45px;
 }
 
-#post_content {
+.post_content {
   border: none;
   width: 100%;
   position: relative;
