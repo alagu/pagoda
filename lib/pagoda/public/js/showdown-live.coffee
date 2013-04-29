@@ -4,7 +4,7 @@ class ShowdownLive
     $(@selector).css('display', 'none')
 
     # Insert a live node
-    livenode  = $('<div contenteditable="true" class="post_content"></div>')
+    livenode  = $('<div contenteditable="true" class="showdown-live"></div>')
     livenode.insertAfter(@selector)
 
     # Put HTML inside livenode

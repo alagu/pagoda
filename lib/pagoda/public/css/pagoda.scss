@@ -507,7 +507,7 @@ fieldset.markdown {
   line-height: 45px;
 }
 
-.post_content {
+#post_content {
   border: none;
   width: 100%;
   position: relative;
@@ -579,3 +579,20 @@ body {
 #publish-bar input[type=submit].post-saving {
   background: #40A4FB;
 }
+
+
+.showdown-live {
+  border: none;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  resize: none;
+  font-size: 20px;
+  outline: 0px solid transparent;
+  
+  &:focus {
+    border: none;
+    outline: 0px solid transparent;
+  }
+}
+
