@@ -39,6 +39,10 @@ module Shwedagon
     # Gives out a sorted list of post template data
     # for a post or draft
     def posts_template_data(post_items)
+      if post_items.nil?
+        return []
+      end
+
       template_data = post_items.map do |post|
         {
           :title    => post.data['title'],

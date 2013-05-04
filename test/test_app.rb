@@ -132,6 +132,17 @@ context "Frontend" do
     assert_equal last_response.status, 404
   end
 
+  test "Empty blog without posts" do
+
+    Dir["#{@path}/_posts/*"].each do |post|
+      post_file =  File.basename(post)
+      get "/delete/#{post_file}"
+    end 
+
+    get "/"
+    assert_equal last_response.status, 200
+  end
+
   def app
     Shwedagon::App
   end
