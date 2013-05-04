@@ -7,6 +7,7 @@ PATH
       json
       sinatra
       sinatra-mustache
+      sinatra-reloader
       stringex
 
 GEM
@@ -34,8 +35,8 @@ GEM
       rest-client
       simplecov (>= 0.7)
       thor
-    diff-lcs (1.2.4)
-    directory_watcher (1.5.1)
+    diff-lcs (1.2.2)
+    directory_watcher (1.4.1)
     eventmachine (1.0.3)
     fast-stemmer (1.0.2)
     fssm (0.2.10)
@@ -132,4 +133,3 @@ DEPENDENCIES
   rake (~> 10.0.3)
   shoulda
   simplecov
-  sinatra-reloader
