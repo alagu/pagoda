@@ -29,8 +29,8 @@ Gem::Specification.new do |s|
   s.add_dependency('stringex')
   s.add_dependency('sinatra-mustache')
   s.add_dependency('sinatra')
+  s.add_dependency('sinatra-reloader')
   
-  s.add_development_dependency('sinatra-reloader')
   s.add_development_dependency('compass')
   s.add_development_dependency('fssm')
   s.add_development_dependency('rack-test')
