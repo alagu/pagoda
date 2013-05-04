@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 1.8.7"
 
   s.name              = 'pagoda-jekyll'
-  s.version           = '0.0.3'
-  s.date              = '2013-03-26'
+  s.version           = '0.0.7'
+  s.date              = '2013-05-04'
   s.rubyforge_project = 'pagoda-jekyll'
 
   s.summary     = "A simple admin for Jekyll"
@@ -29,8 +29,8 @@ Gem::Specification.new do |s|
   s.add_dependency('stringex')
   s.add_dependency('sinatra-mustache')
   s.add_dependency('sinatra')
+  s.add_dependency('sinatra-reloader')
   
-  s.add_development_dependency('sinatra-reloader')
   s.add_development_dependency('compass')
   s.add_development_dependency('fssm')
   s.add_development_dependency('rack-test')

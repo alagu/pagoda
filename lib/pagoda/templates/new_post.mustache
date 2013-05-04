@@ -2,7 +2,7 @@
   <div id="admin">
     <div id="save"></div>
     
-    <form accept-charset="UTF-8" action="/save-post" class="edit_post" method="post">
+    <form accept-charset="UTF-8" action="{{base_url}}/save-post" class="edit_post" method="post">
     <input type="hidden" name="method" value="put" />
 
       {{>editor_area}}
@@ -11,7 +11,7 @@
         <div id="publish-bar">
           <div class="contain">
             <div class="left">
-              <a href="/">&laquo; Admin</a>
+              <a href="{{base_url}}/">&laquo; Admin</a>
             </div>
             <div class="right">
               <input id="save-button" name="commit" type="submit" value="Save" />

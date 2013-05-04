@@ -13,10 +13,18 @@ require 'pagoda/helper'
 require 'pagoda/config'
 require 'pagoda/jekyll-mod'
 
+
+
 # Sinatra based frontend
 module Shwedagon
-  class App < Sinatra::Base
 
+
+  class App < Sinatra::Base
+   
+    before do
+      @base_url = url('/', false).chomp('/')
+    end
+  
     # Create a new post from scratch. Return filename
     # This would not commit the file.
     def create_new_post(params)      
@@ -79,7 +87,7 @@ module Shwedagon
       repo.remove([full_path])
       data = repo.commit_index "Deleted #{post_file}"
       
-      redirect "/"
+      redirect @base_url
     end
 
     # Edit any post
@@ -142,7 +150,7 @@ module Shwedagon
       if params[:ajax]
         {:status => 'OK'}.to_json
       else
-        redirect '/edit/' + filename
+        redirect @base_url + '/edit/' + filename
       end
     end
 

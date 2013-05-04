@@ -488,6 +488,7 @@ fieldset.markdown {
   margin: 0;
   resize: none;
   font-size: 20px;
+  line-height: 30px;
 }
 
 textarea#post_title {

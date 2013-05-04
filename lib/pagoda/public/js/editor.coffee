@@ -40,7 +40,7 @@ $(document).ready ->
 
       ajax    : true
 
-    $.post('/save-post', post_obj, (data)->
+    $.post(baseUrl + '/save-post', post_obj, (data)->
       response = $.parseJSON(data)
       if response['status'] == 'OK'
         setTimeout((->set_save_button('saved')),1000)

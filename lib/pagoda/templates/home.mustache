@@ -3,8 +3,8 @@
     <div id="save"></div>
     
     <div id="drafts" class="col">
-      <h1>Drafts <a href="/new" class="button">New Draft</a></h1>
-      <form accept-charset="UTF-8" action="/new" class="new_post" id="new_post" method="get">
+      <h1>Drafts <a href="{{base_url}}/new" class="button">New Draft</a></h1>
+      <form accept-charset="UTF-8" action="{{base_url}}/new" class="new_post" id="new_post" method="get">
         <input id           = "post_title" 
                name         = "ptitle" 
                autocomplete = "off"
@@ -15,10 +15,10 @@
         {{#drafts}}
         <li id="post-{{filename}}">
           <h3>
-            <a href="/edit/{{filename}}">{{title}}</a>
+            <a href="{{base_url}}/edit/{{filename}}">{{title}}</a>
             <span class="links">
-              <a href="/this-is-brilliant" class="admin-view">view</a>
-              <a href="/delete/{{filename}}" class="delete-button admin-delete" rel="nofollow">x</a>
+              <a href="{{base_url}}/404" class="admin-view">view</a>
+              <a href="{{base_url}}/delete/{{filename}}" class="delete-button admin-delete" rel="nofollow">x</a>
             </span>
           </h3>
         </li>
@@ -28,15 +28,15 @@
 
   <div id="published" class="col">
   <h2>Published 
-  <a href="/settings" class="button">Settings</a></h2>
+  <a href="{{base_url}}/settings" class="button">Settings</a></h2>
   <ul>
     {{#published}}
     <li id="post-{{filename}}">
       <h3>
-        <a href="/edit/{{filename}}">{{title}}</a>
+        <a href="{{base_url}}/edit/{{filename}}">{{title}}</a>
         <span class="links">
-          <a href="/vniverse" class="admin-view">view</a>
-          <a href="/delete/{{filename}}" class="delete-button admin-delete" rel="nofollow">x</a>
+          <a href="{{base_url}}/404" class="admin-view">view</a>
+          <a href="{{base_url}}/delete/{{filename}}" class="delete-button admin-delete" rel="nofollow">x</a>
         </span>
       </h3>
     </li>
