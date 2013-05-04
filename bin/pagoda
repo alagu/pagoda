@@ -2,14 +2,48 @@
 
 $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
 
+
+
+help = <<HELP
+Pagoda is a Jekyll editor
+
+Basic Command Line Usage:
+  pagoda [OPTIONS] [PATH]
+
+        PATH                         The path to the Jekyll repository (default .).
+
+Options:
+HELP
+
+require 'optparse'
 require 'rubygems'
 require 'pagoda/app'
 
-#TODO Use options parser
-if not ARGV.first
-  puts "Enter a valid blog path"
-else
-  Shwedagon::App.set :blog, ARGV.first
+options = { 'port' => 4567, 'bind' => '0.0.0.0' }
+
+opts = OptionParser.new do |opts|
+  opts.banner = help
+
+  opts.on("--port [PORT]", "Bind port (default 4567).") do |port|
+    options['port'] = port.to_i
+  end
 end
 
-Shwedagon::App.run!({})
+# Read command line options into `options` hash
+begin
+  opts.parse!
+  jekyll_path = ARGV[0] || Dir.pwd
+
+  if not File.directory? jekyll_path
+    raise OptionParser::InvalidOption.new "Directory '#{jekyll_path}' not found"
+  end
+
+rescue OptionParser::InvalidOption
+  puts "pagoda: #{$!.message}"
+  puts "pagoda: try 'pagoda --help' for more information"
+  exit
+end
+
+Shwedagon::App.set :blog, ARGV.first
+
+Shwedagon::App.run!(options)
