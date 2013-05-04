@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pagoda-jekyll (0.0.3)
+    pagoda-jekyll (0.0.5)
       grit
       jekyll
       json
