@@ -87,7 +87,7 @@ module Shwedagon
       repo.remove([full_path])
       data = repo.commit_index "Deleted #{post_file}"
       
-      redirect "/"
+      redirect base_url
     end
 
     # Edit any post
@@ -150,7 +150,7 @@ module Shwedagon
       if params[:ajax]
         {:status => 'OK'}.to_json
       else
-        redirect '/edit/' + filename
+        redirect base_url + '/edit/' + filename
       end
     end
 
