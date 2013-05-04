@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pagoda-jekyll (0.0.5)
+    pagoda-jekyll (0.0.7)
       grit
       jekyll
       json
@@ -34,7 +34,7 @@ GEM
       rest-client
       simplecov (>= 0.7)
       thor
-    diff-lcs (1.2.2)
+    diff-lcs (1.2.4)
     directory_watcher (1.5.1)
     eventmachine (1.0.3)
     fast-stemmer (1.0.2)
