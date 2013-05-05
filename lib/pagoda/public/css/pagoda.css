@@ -478,6 +478,10 @@ fieldset.markdown {
   margin: 23px 0 0 0;
 }
 
+#text-content {
+  margin-top: -25px;
+}
+
 #post-title {
   width: 100%;
   border: none;
@@ -494,7 +498,6 @@ fieldset.markdown {
   font-size: 20px;
   line-height: 30px;
 }
-
 #post-content.scrolled {
   border-top: 1px solid rgba(30, 30, 30, 0.1);
 }

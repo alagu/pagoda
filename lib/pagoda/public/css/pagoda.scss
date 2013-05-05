@@ -501,6 +501,10 @@ fieldset.markdown {
   margin: 23px 0 0 0;
 }
 
+#text-content {
+  margin-top: -25px;
+}
+
 #post-title {
   width: 100%;
   border: none;
@@ -516,11 +520,12 @@ fieldset.markdown {
   resize: none;
   font-size: 20px;
   line-height: 30px;
+  
+  &.scrolled {
+    border-top: 1px solid rgba(30,30,30,0.1);
+  }
 }
 
-#post-content.scrolled {
-  border-top: 1px solid rgba(30,30,30,0.1);
-}
 
 textarea#post-title {
   resize: none;
