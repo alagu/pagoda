@@ -9,10 +9,11 @@
 # Add onclick listener. 
 class ShowdownLive
   constructor: (@selector)->
+    @selector = $(@selector)
     # Hide the textarea
-    width  = $(@selector).width()
-    height = $(@selector).height()
-    $(@selector).css('display', 'none')
+    width  = @selector.width()
+    height = @selector.height()
+    @selector.css('display', 'none')
 
     # Insert a live node
     @livenode  = $('<div contenteditable="true" class="showdown-live"></div>')
@@ -28,17 +29,20 @@ class ShowdownLive
 
     # Put HTML inside livenode
     converter = new Showdown.converter();
-    html      = converter.makeHtml($(@selector).val());
+    html      = converter.makeHtml(@selector.val());
     @livenode.html(html)
 
-    @log "Initing #{@selector} as ShowdownLive"
+    @log "Initing ##{@selector.attr('id')} as ShowdownLive"
 
   keyhandle: (e) =>
     shdlv_html = @livenode.html()
     shdlv_html = shdlv_html.replace(/<p>/g,"\n")
     shdlv_html = shdlv_html.replace(/<\/p>/g,"\n")
     shdlv_html = shdlv_html.replace(/<br>/g,"\n")
-    $(@selector).val(shdlv_html)
+
+    lines      = @selector.val().split("\n")
+    @log lines
+
 
   log: (message)->
     console.log message
