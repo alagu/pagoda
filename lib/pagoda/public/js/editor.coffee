@@ -30,8 +30,8 @@ $(document).ready ->
 
     post_obj = 
       post : 
-        title   : $('#post_title').val()
-        content : $('#post_content').val()
+        title   : $('#post-title').val()
+        content : $('#post-content').val()
         name    : $('#post_name').val()
         draft   : draft
 
@@ -48,7 +48,7 @@ $(document).ready ->
 
   # Dom invoked events
   handle_events =->
-    $('#post-editor #post_title').autosize({append: "\n"})
+    $('#post-editor #post-title').autosize({append: "\n"})
 
     $("#fullscreen").click (e)->
       screenfull.request();
@@ -56,20 +56,26 @@ $(document).ready ->
     screenfull.onchange = ->
       if screenfull.isFullscreen
         $('#fullscreen').hide()
-        $('#post_content').focus()
+        $('#post-content').focus()
 
         setTimeout( ->
           rows = Math.ceil($(window).height()/48)
-          $('#post_content').attr('rows', rows)
+          $('#post-content').attr('rows', rows)
         , 1000)
 
       else
         $('#fullscreen').show();
-        $('#post_content').attr('rows', 15);
+        $('#post-content').attr('rows', 15);
 
     $('.delete-button').click ->
       if not confirm("Confirm delete?")
         return false
+
+    $('#post-content').bind 'scroll', (e)->
+      if $(this).scrollTop() > 10
+        $(this).addClass('scrolled')
+      else
+        $(this).removeClass('scrolled')
 
     if is_edit_page()
       $('#save-button').click( ->
@@ -106,10 +112,10 @@ $(document).ready ->
 
 
   focus_to_type =->
-    if not is_edit_page() and ($('#post_title').val() == '')
-      $('#post_title').focus()
+    if not is_edit_page() and ($('#post-title').val() == '')
+      $('#post-title').focus()
     else
-      $('#post_content').focus()
+      $('#post-content').focus()
 
 
   init =->

@@ -320,7 +320,7 @@ body.posts.new #admin {
   padding: 0 0 0 20px;
   border-left: 4px solid lightblue;
 }
-#admin #drafts #post_title {
+#admin #drafts #post-title {
   width: 350px;
   font-size: 16px;
   font-weight: 400;
@@ -478,14 +478,14 @@ fieldset.markdown {
   margin: 23px 0 0 0;
 }
 
-#post_title {
+#post-title {
   width: 100%;
   border: none;
   background: none;
   line-height: 45px;
 }
 
-#post_content {
+#post-content {
   border: none;
   width: 100%;
   position: relative;
@@ -495,7 +495,11 @@ fieldset.markdown {
   line-height: 30px;
 }
 
-textarea#post_title {
+#post-content.scrolled {
+  border-top: 1px solid rgba(30, 30, 30, 0.1);
+}
+
+textarea#post-title {
   resize: none;
   font-family: 'Asap', sans-serif;
   font-size: 40px;
