@@ -1,3 +1,12 @@
+# How to Build
+# The text editor is split into 3 parts:
+# Preview + Edit + Preview
+# For each preview point find a markdown point equivalent
+# At the markdown point - show the markdown text
+# At all other points, show the preview text.
+# 
+# Apply this whenever the cursor position changes.
+# Add onclick listener. 
 class ShowdownLive
   constructor: (@selector)->
     # Hide the textarea
