@@ -9,13 +9,13 @@
         <div id="publish-bar">
           <div class="contain">
             <div class="left">
-              <a href="{{base_url}}/">&laquo; Admin</a>
-              <a href="{{base_url}}/delete/{{ name }}" class="delete-bar delete-button" >Delete</a>
+              <a href="{{base_url}}/">&laquo; ADMIN</a>
+              <a href="{{base_url}}/delete/{{ name }}" class="delete-bar delete-button" >DELETE</a>
             </div>
             <div class="right">
-              <label for="post_draft">Draft</label>
+              <label id="draft_label" for="post_draft">Draft</label>
               <input id="post_draft" name="post[draft]" type="checkbox" {{#draft}}checked{{/draft}} />
-              <input id="save-button" name="commit" type="submit" value="Save" />
+              <input id="save-button" name="commit" type="submit" value="SAVE" />
             </div>
           </div>
         </div>

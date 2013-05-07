@@ -1,6 +1,6 @@
-
 /* TODO: pull out coloring into variables */
 $linkhover: red;
+$iphone: "only screen and (max-device-width : 480px)";
 
 div:before, div:after {content:''; display:table;}
 
@@ -151,15 +151,24 @@ code {
   position: fixed;
   bottom: 0;
   left: 0;
-  background: #222;
+  background: #333;
   color: #fff;
   width: 100%;
   text-align: center;
   padding: 10px 0 3px;
+  
+  @media #{$iphone} {
+    padding: 2px 0;
+  }
 
   .contain {
     margin: 0 auto;
     width: 960px;
+    
+    @media #{$iphone} { 
+      width: 300px;
+      padding: 3px 10px;
+    }
   }
 
   input[type=text] {
@@ -210,6 +219,20 @@ code {
           border-radius: 5px;
      -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  -webkit-appearance: none;
+  
+  @media #{$iphone} {
+    padding: 2px 10px;
+    font-size: 12px;
+  }
+}
+
+#publish-bar input[type=submit] {
+  @media #{$iphone} {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: -1px; 
+  }
 }
 
 .button.secondary {
@@ -297,6 +320,10 @@ body.posts.new #admin {
   width: 808px;
   margin: 0 auto;
   position: relative;
+  
+  @media #{$iphone} {
+    width: 320px;
+  }
 
   #save-button.saved {
     color: #999;
@@ -326,6 +353,11 @@ body.posts.new #admin {
       font-weight: 400;
       margin: 0;
       border-bottom: 1px solid #ddd;
+      
+      @media #{$iphone} {
+        width: 260px;
+        margin-left: -5px;
+      }
     }
   }
 
@@ -335,12 +367,23 @@ body.posts.new #admin {
     h2 {color: #999;}
     h2 a {margin-top: -2px;}
     h3 a {color: #999;}
+
+    @media #{$iphone} {
+      float: none;
+      display: block;
+    }
   }
 
   .col h1,
   .col h2 {
     position: relative;
     text-transform: uppercase;
+  }
+
+  .col h1 {
+    @media #{$iphone} {
+      margin-top: 0;
+    }
   }
 
   .col h1 a,
@@ -357,6 +400,10 @@ body.posts.new #admin {
   .col {
     width: 360px;
     padding: 20px;
+    
+    @media #{$iphone} {
+      width: 272px;
+    }
 
     h2 a {
       background: #999;
@@ -468,6 +515,11 @@ fieldset.markdown {
   #post-editor {
     width: 960px;
     float: left;
+    
+    @media #{$iphone} {
+      width: 310px;
+      padding: 5px;
+    }
   }
 
   #fullscreen {
@@ -475,6 +527,8 @@ fieldset.markdown {
     position: relative;
     top: 35px;
     border: 0 none;
+    
+    @media #{$iphone} { display: none;}
   }
   
 }
@@ -499,10 +553,13 @@ fieldset.markdown {
 
 #text-title {
   margin: 23px 0 0 0;
+  
+  @media #{$iphone} { margin: 0;}
 }
 
 #text-content {
   margin-top: -25px;
+  @media #{$iphone} { margin-top: -45px;}
 }
 
 #post-title {
@@ -532,6 +589,8 @@ textarea#post-title {
   font-family: 'Asap', sans-serif;
   font-size: 40px;
   font-weight: normal;
+  
+  @media #{$iphone} { font-size: 25px;}
 }
 
 form .permalink {
@@ -589,4 +648,10 @@ body {
 
 #publish-bar input[type=submit].post-saving {
   background: #40A4FB;
+}
+
+#publish-bar {
+  .delete-bar, #draft_label, #post_draft {
+    @media #{$iphone} { display: none; }   
+  }
 }

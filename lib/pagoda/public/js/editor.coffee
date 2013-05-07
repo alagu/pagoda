@@ -5,6 +5,9 @@ $(document).ready ->
   key.filter = (e)->
     true
 
+  is_iphone =->
+    /iPhone/i.test(navigator.userAgent)
+ 
   is_edit_page = ->
     window.location.pathname.indexOf('edit') != -1
 
@@ -118,11 +121,19 @@ $(document).ready ->
       $('#post-content').focus()
 
 
+  fullscreen_mobile =->
+    if(is_iphone())
+      setTimeout (->
+        # Hide the address bar!
+        window.scrollTo 0, 1
+      ), 0
+    $('.links').remove()
+
   init =->
     handle_events()
     keyboard_events()
-    show_shortcuts()
+    show_shortcuts() if not is_iphone()
     focus_to_type()
-
+    fullscreen_mobile()
 
   init()

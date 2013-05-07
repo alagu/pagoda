@@ -156,15 +156,26 @@ code {
   position: fixed;
   bottom: 0;
   left: 0;
-  background: #222;
+  background: #333;
   color: #fff;
   width: 100%;
   text-align: center;
   padding: 10px 0 3px;
 }
+@media only screen and (max-device-width: 480px) {
+  #publish-bar {
+    padding: 2px 0;
+  }
+}
 #publish-bar .contain {
   margin: 0 auto;
   width: 960px;
+}
+@media only screen and (max-device-width: 480px) {
+  #publish-bar .contain {
+    width: 300px;
+    padding: 3px 10px;
+  }
 }
 #publish-bar input[type=text] {
   border: none;
@@ -209,6 +220,23 @@ code {
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  -webkit-appearance: none;
+}
+@media only screen and (max-device-width: 480px) {
+  #publish-bar input[type=submit],
+  #publish-bar a,
+  .button {
+    padding: 2px 10px;
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  #publish-bar input[type=submit] {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: -1px;
+  }
 }
 
 .button.secondary {
@@ -301,6 +329,11 @@ body.posts.new #admin {
   margin: 0 auto;
   position: relative;
 }
+@media only screen and (max-device-width: 480px) {
+  #admin {
+    width: 320px;
+  }
+}
 #admin #save-button.saved {
   color: #999;
 }
@@ -327,6 +360,12 @@ body.posts.new #admin {
   margin: 0;
   border-bottom: 1px solid #ddd;
 }
+@media only screen and (max-device-width: 480px) {
+  #admin #drafts #post-title {
+    width: 260px;
+    margin-left: -5px;
+  }
+}
 #admin #published {
   float: right;
 }
@@ -339,10 +378,21 @@ body.posts.new #admin {
 #admin #published h3 a {
   color: #999;
 }
+@media only screen and (max-device-width: 480px) {
+  #admin #published {
+    float: none;
+    display: block;
+  }
+}
 #admin .col h1,
 #admin .col h2 {
   position: relative;
   text-transform: uppercase;
+}
+@media only screen and (max-device-width: 480px) {
+  #admin .col h1 {
+    margin-top: 0;
+  }
 }
 #admin .col h1 a,
 #admin .col h2 a {
@@ -357,6 +407,11 @@ body.posts.new #admin {
 #admin .col {
   width: 360px;
   padding: 20px;
+}
+@media only screen and (max-device-width: 480px) {
+  #admin .col {
+    width: 272px;
+  }
 }
 #admin .col h2 a {
   background: #999;
@@ -452,11 +507,22 @@ fieldset.markdown {
   width: 960px;
   float: left;
 }
+@media only screen and (max-device-width: 480px) {
+  #split #post-editor {
+    width: 310px;
+    padding: 5px;
+  }
+}
 #split #fullscreen {
   float: right;
   position: relative;
   top: 35px;
   border: 0 none;
+}
+@media only screen and (max-device-width: 480px) {
+  #split #fullscreen {
+    display: none;
+  }
 }
 
 .fullScreen #fullscreen {
@@ -477,9 +543,19 @@ fieldset.markdown {
 #text-title {
   margin: 23px 0 0 0;
 }
+@media only screen and (max-device-width: 480px) {
+  #text-title {
+    margin: 0;
+  }
+}
 
 #text-content {
   margin-top: -25px;
+}
+@media only screen and (max-device-width: 480px) {
+  #text-content {
+    margin-top: -45px;
+  }
 }
 
 #post-title {
@@ -507,6 +583,11 @@ textarea#post-title {
   font-family: 'Asap', sans-serif;
   font-size: 40px;
   font-weight: normal;
+}
+@media only screen and (max-device-width: 480px) {
+  textarea#post-title {
+    font-size: 25px;
+  }
 }
 
 form .permalink {
@@ -560,4 +641,10 @@ body {
 
 #publish-bar input[type=submit].post-saving {
   background: #40A4FB;
+}
+
+@media only screen and (max-device-width: 480px) {
+  #publish-bar .delete-bar, #publish-bar #draft_label, #publish-bar #post_draft {
+    display: none;
+  }
 }
