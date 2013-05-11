@@ -13,8 +13,12 @@
               <a href="{{base_url}}/delete/{{ name }}" class="delete-bar delete-button" >DELETE</a>
             </div>
             <div class="right">
-              <label id="draft_label" for="post_draft">Draft</label>
-              <input id="post_draft" name="post[draft]" type="checkbox" {{#draft}}checked{{/draft}} />
+
+              <div class="draft-options">
+                <a id="draft-action" class="button {{#draft}}selected{{/draft}}" href="#">DRAFT</a>
+                <a id="publish-action" class="button {{^draft}}selected{{/draft}}" href="#">DONE</a>
+                <input id="post_draft" name="post[draft]" type="checkbox" {{#draft}}checked{{/draft}} />
+              </div>
               <input id="save-button" name="commit" type="submit" value="SAVE" />
             </div>
           </div>

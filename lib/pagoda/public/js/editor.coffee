@@ -26,6 +26,21 @@ $(document).ready ->
       $('#save-button').removeClass('post-saving')
       setTimeout((->set_save_button('saved')),2000)
 
+  draft_post = ->
+    $('#post_draft').prop('checked', true)
+    $('#draft-action').addClass('selected')
+    $('#publish-action').removeClass('selected')
+    save_post()
+    false
+
+  publish_post = ->
+    $('#post_draft').prop('checked', false)
+    $('#draft-action').removeClass('selected')
+    $('#publish-action').addClass('selected')
+    save_post()
+    false
+
+
   # Save post
   save_post = ->
     set_save_button('saving')
@@ -85,6 +100,10 @@ $(document).ready ->
         save_post()
         false
       )
+
+      $('#draft-action').click(draft_post)
+      $('#publish-action').click(publish_post)
+
 
   keyboard_events =->
     key('⌘+enter, ctrl+enter', (e)->

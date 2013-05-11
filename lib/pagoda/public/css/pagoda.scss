@@ -325,6 +325,26 @@ body.posts.new #admin {
     width: 320px;
   }
 
+  .draft-options {
+    display: inline-block;
+    border: 3px solid #777;
+    border-radius: 6px;
+    padding: 4px;
+
+    a {     
+      font-size: 12px;
+      padding: 2px 10px;
+    }
+
+    a.selected {
+      background-color: #00CDCD;
+    }
+
+    #post_draft {
+      display: none;
+    }
+  }
+
   #save-button.saved {
     color: #999;
 

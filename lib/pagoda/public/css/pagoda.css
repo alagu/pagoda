@@ -334,6 +334,22 @@ body.posts.new #admin {
     width: 320px;
   }
 }
+#admin .draft-options {
+  display: inline-block;
+  border: 3px solid #777;
+  border-radius: 6px;
+  padding: 4px;
+}
+#admin .draft-options a {
+  font-size: 12px;
+  padding: 2px 10px;
+}
+#admin .draft-options a.selected {
+  background-color: #00CDCD;
+}
+#admin .draft-options #post_draft {
+  display: none;
+}
 #admin #save-button.saved {
   color: #999;
 }
