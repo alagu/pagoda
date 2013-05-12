@@ -5,6 +5,9 @@ $(document).ready ->
   key.filter = (e)->
     true
 
+  is_iphone =->
+    /iPhone/i.test(navigator.userAgent)
+ 
   is_edit_page = ->
     window.location.pathname.indexOf('edit') != -1
 
@@ -26,6 +29,21 @@ $(document).ready ->
       $('#save-button').removeClass('post-saving')
       setTimeout((->set_save_button('saved')),2000)
 
+  draft_post = ->
+    $('#post_draft').prop('checked', true)
+    $('#draft-action').addClass('selected')
+    $('#publish-action').removeClass('selected')
+    save_post()
+    false
+
+  publish_post = ->
+    $('#post_draft').prop('checked', false)
+    $('#draft-action').removeClass('selected')
+    $('#publish-action').addClass('selected')
+    save_post()
+    false
+
+
   # Save post
   save_post = ->
     set_save_button('saving')
@@ -33,8 +51,8 @@ $(document).ready ->
 
     post_obj = 
       post : 
-        title   : $('#post_title').val()
-        content : $('#post_content').val()
+        title   : $('#post-title').val()
+        content : $('#post-content').val()
         name    : $('#post_name').val()
         draft   : draft
 
@@ -51,7 +69,7 @@ $(document).ready ->
 
   # Dom invoked events
   handle_events =->
-    $('#post-editor #post_title').autosize({append: "\n"})
+    $('#post-editor #post-title').autosize({append: "\n"})
 
     $("#fullscreen").click (e)->
       screenfull.request();
@@ -59,26 +77,36 @@ $(document).ready ->
     screenfull.onchange = ->
       if screenfull.isFullscreen
         $('#fullscreen').hide()
-        $('#post_content').focus()
+        $('#post-content').focus()
 
         setTimeout( ->
-          rows = Math.ceil($(window).height()/48)
-          $('#post_content').attr('rows', rows)
+          rows = Math.ceil($(window).height()/40)
+          $('#post-content').attr('rows', rows)
         , 1000)
 
       else
         $('#fullscreen').show();
-        $('#post_content').attr('rows', 15);
+        $('#post-content').attr('rows', 18);
 
     $('.delete-button').click ->
       if not confirm("Confirm delete?")
         return false
+
+    $('#post-content').bind 'scroll', (e)->
+      if $(this).scrollTop() > 10
+        $(this).addClass('scrolled')
+      else
+        $(this).removeClass('scrolled')
 
     if is_edit_page()
       $('#save-button').click( ->
         save_post()
         false
       )
+
+      $('#draft-action').click(draft_post)
+      $('#publish-action').click(publish_post)
+
 
   keyboard_events =->
     key('⌘+enter, ctrl+enter', (e)->
@@ -109,21 +137,30 @@ $(document).ready ->
 
 
   focus_to_type =->
-    if not is_edit_page() and ($('#post_title').val() == '')
-      $('#post_title').focus()
+    if not is_edit_page() and ($('#post-title').val() == '')
+      $('#post-title').focus()
     else
-      $('#post_content').focus()
+      $('#post-content').focus()
 
   showdown_live =->
     if has_editor_area()
       showdown_live = new ShowdownLive('#post_content')
 
 
+  fullscreen_mobile =->
+    if(is_iphone())
+      setTimeout (->
+        # Hide the address bar!
+        window.scrollTo 0, 1
+      ), 0
+    $('.links').remove()
+
   init =->
     handle_events()
     keyboard_events()
-    show_shortcuts()
+    show_shortcuts() if not is_iphone()
     focus_to_type()
     showdown_live()
+    fullscreen_mobile()
 
   init()
