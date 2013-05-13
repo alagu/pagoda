@@ -340,6 +340,11 @@ body.posts.new #admin {
   border-radius: 10px;
   padding: 4px;
 }
+@media only screen and (max-device-width: 480px) {
+  #admin .draft-options {
+    display: none;
+  }
+}
 #admin .draft-options a {
   font-size: 12px;
   padding: 2px 10px;
