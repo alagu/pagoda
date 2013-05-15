@@ -19,7 +19,9 @@ Screenshots
 ![http://cl.ly/image/0b3Y101Y3g0A/Screen%20Shot%202013-05-14%20at%2011.57.45%20PM.png](http://cl.ly/image/0b3Y101Y3g0A/Screen%20Shot%202013-05-14%20at%2011.57.45%20PM.png)
 
 **Mobile Dashboard and Editing**
-![http://cl.ly/image/2j1V2n2z0f0s/2013-05-15%2000.10.22.png](http://cl.ly/image/2j1V2n2z0f0s/2013-05-15%2000.10.22.png) ![http://cl.ly/image/030i1G0c3d0u/2013-05-15%2000.10.57.png](http://cl.ly/image/030i1G0c3d0u/2013-05-15%2000.10.57.png)
+
+
+<img src="http://cl.ly/image/2j1V2n2z0f0s/2013-05-15%2000.10.22.png" width="400"/>......<img src="http://cl.ly/image/030i1G0c3d0u/2013-05-15%2000.10.57.png" width="400"/>
 
 
 Install
@@ -40,7 +42,7 @@ Two commands, one for installing, another for running.
 Deploying on your own server
 ============================
 
-Right now there is no auth mechanism. The way I use it is http auth at nginx.
+Right now there is no auth mechanism. The way I use it is http auth + nginx + unicorn + config.ru. Will document more about this.
 
 
 FAQ/Bugs
