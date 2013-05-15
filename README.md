@@ -12,5 +12,5 @@ Install
 ```
 
 
-<img src="http://openclipart.org/people/Silveira/pagoda.svg" width="200"/>
+<img src="http://f.cl.ly/items/3v0Y3q2O461C3K0A221Y/pagoda.png"/>
 
