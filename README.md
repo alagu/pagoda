@@ -26,3 +26,12 @@ Deploying on your own server
 
 Right now there is no auth mechanism. The way I use it is http auth at nginx.
 
+
+FAQ/Bugs
+========
+
+** I get ArgumentError - invalid byte sequence in US-ASCII**
+
+Set localte to UTF-8
+
+export LC_ALL=en_US.UTF-8
