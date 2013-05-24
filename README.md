@@ -41,8 +41,72 @@ Two commands, one for installing, another for running.
 
 Deploying on your own server
 ============================
+I use basic http authentication in real world use. I've deployed through nginx + unicorn. There could be easier deployment than this. 
 
-Right now there is no auth mechanism. The way I use it is http auth + nginx + unicorn + config.ru. Will document more about this.
+This is still not well organized, but the setup works.
+
+## Create sock and pid folders
+
+```
+mkdir -p tmp/pids
+mkdir tmp/sock
+```
+
+## Your unicorn configuration (unicorn.rb):
+
+```
+pid "./tmp/pids/blog-admin.pid"
+listen "unix:./tmp/sock/blog-admin.sock"
+ENV['blog'] = '/path/to/your/jekyll/blog'
+```
+
+## Script to start Unicorn (start.sh):
+
+```
+cd /path/to/pagoda
+rvm use 1.9.3
+unicorn -c unicorn.rb  -D
+```
+Note: This should be run as bash --login start.sh
+
+## Create htpasswd file for authentication
+```
+htpasswd -c /path/to/httpasswd/file alagu
+New password: <enterpasswd>
+Re-type new password: <re-enterpasswd>
+Adding password for user alagu
+```
+
+## Nginx configuration
+
+`myblog.com` shows the generated blog and `myblog.com/admin` pops up a http authentication for your admin.
+
+```
+upstream unicorn_server {
+   server unix:/path/to/tmp/sock/blog-admin.sock;
+}
+
+server {
+        server_name myblog.com;
+
+        listen 80;
+
+        location / {
+           root  /path/to/your/jekyll/blog/_site/;
+        }
+
+        location /admin {
+                auth_basic "Restricted";
+                auth_basic_user_file /path/to/htpasswd/file;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_redirect off;
+                proxy_pass http://unicorn_server;
+        }
+}
+```
+
+
 
 
 FAQ/Bugs
