@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 1.8.7"
 
   s.name              = 'pagoda-jekyll'
-  s.version           = '0.0.7'
-  s.date              = '2013-05-04'
+  s.version           = '0.0.9'
+  s.date              = '2013-05-24'
   s.rubyforge_project = 'pagoda-jekyll'
 
   s.summary     = "A simple admin for Jekyll"

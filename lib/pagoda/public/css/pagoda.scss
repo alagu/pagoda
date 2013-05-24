@@ -598,6 +598,11 @@ fieldset.markdown {
   resize: none;
   font-size: 20px;
   line-height: 30px;
+
+  @media #{$iphone} { 
+    font-size: 15px;
+    line-height: 20px;
+  }
   
   &.scrolled {
     border-top: 1px solid rgba(30,30,30,0.1);
