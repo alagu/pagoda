@@ -156,11 +156,15 @@ code {
   position: fixed;
   bottom: 0;
   left: 0;
-  background: #333;
+  background: #bbb;
   color: #fff;
   width: 100%;
   text-align: center;
   padding: 10px 0 3px;
+  border-top: 1px solid #999;
+  -webkit-box-shadow: rgba(68, 68, 68, 0.9) 0 0 5px;
+  -moz-box-shadow: rgba(68, 68, 68, 0.9) 0 0 5px;
+  box-shadow: rgba(68, 68, 68, 0.9) 0 0 5px;
 }
 @media only screen and (max-device-width: 480px) {
   #publish-bar {
@@ -336,9 +340,9 @@ body.posts.new #admin {
 }
 #admin .draft-options {
   display: inline-block;
-  border: 3px solid #777;
-  border-radius: 10px;
-  padding: 4px;
+  border: 3px solid #000;
+  border-radius: 5px;
+  padding: 1px;
 }
 @media only screen and (max-device-width: 480px) {
   #admin .draft-options {
@@ -346,14 +350,25 @@ body.posts.new #admin {
   }
 }
 #admin .draft-options a {
-  font-size: 12px;
-  padding: 2px 10px;
+  font-size: 15px;
+  padding: 4px 10px;
+  background-color: transparent;
+  color: #000;
+  border-radius: 4px;
 }
-#admin .draft-options a.selected {
-  background-color: #00CDCD;
+#admin .draft-options a.selected, #admin .draft-options a:hover {
+  background-color: #000;
+  color: #fff;
+}
+#admin .draft-options a.override-select {
+  background-color: inherit;
+  color: #000;
 }
 #admin .draft-options #post_draft {
   display: none;
+}
+#admin #save-button {
+  width: 90px;
 }
 #admin #save-button.saved {
   color: #999;

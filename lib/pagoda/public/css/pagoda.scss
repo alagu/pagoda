@@ -1,3 +1,4 @@
+@import "compass/css3";
 /* TODO: pull out coloring into variables */
 $linkhover: red;
 $iphone: "only screen and (max-device-width : 480px)";
@@ -151,11 +152,13 @@ code {
   position: fixed;
   bottom: 0;
   left: 0;
-  background: #333;
+  background: #bbb;
   color: #fff;
   width: 100%;
   text-align: center;
   padding: 10px 0 3px;
+  border-top: 1px solid #999;
+  @include box-shadow(rgba(#444, 0.9) 0 0 5px);
   
   @media #{$iphone} {
     padding: 2px 0;
@@ -327,25 +330,38 @@ body.posts.new #admin {
 
   .draft-options {
     display: inline-block;
-    border: 3px solid #777;
-    border-radius: 10px;
-    padding: 4px;
+    border: 3px solid #000;
+    border-radius: 5px;
+    padding: 1px;
     @media #{$iphone} { display: none; }   
 
     a {     
-      font-size: 12px;
-      padding: 2px 10px;
+      font-size: 15px;
+      padding: 4px 10px;
+      background-color: transparent;
+      color: #000;
+      border-radius: 4px;
     }
 
-    a.selected {
-      background-color: #00CDCD;
+    a.selected, a:hover {
+      background-color: #000;
+      color: #fff;
+    }
+
+    a.override-select {
+      background-color: inherit;
+      color: #000;
     }
 
     #post_draft {
       display: none;
     }
   }
-
+  
+  #save-button {
+    width: 90px;
+  }
+  
   #save-button.saved {
     color: #999;
 

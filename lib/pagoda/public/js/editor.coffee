@@ -1,7 +1,5 @@
 $(document).ready ->
 
-  # Keymaster doesn't allow INPUT, TEXTAREA to have shortcuts.
-  # Override it.
   key.filter = (e)->
     true
 
@@ -13,12 +11,12 @@ $(document).ready ->
 
   set_save_button = (status)->
     if(status == 'saving')
-      $('#save-button').val('Saving')
+      $('#save-button').val('SAVING')
       $('#save-button').addClass('post-saving')
     else if status == 'saved'
-      $('#save-button').val('Saved')
+      $('#save-button').val('SAVED')
       setTimeout((->
-        $('#save-button').val('Save')
+        $('#save-button').val('SAVE')
         $('#save-button').removeClass('post-saving')
       ), 1000)
     else if status == 'error'
@@ -30,6 +28,7 @@ $(document).ready ->
     $('#post_draft').prop('checked', true)
     $('#draft-action').addClass('selected')
     $('#publish-action').removeClass('selected')
+    $('.override-select').removeClass('override-select')
     save_post()
     false
 
@@ -37,6 +36,7 @@ $(document).ready ->
     $('#post_draft').prop('checked', false)
     $('#draft-action').removeClass('selected')
     $('#publish-action').addClass('selected')
+    $('.override-select').removeClass('override-select')
     save_post()
     false
 
@@ -70,6 +70,14 @@ $(document).ready ->
 
     $("#fullscreen").click (e)->
       screenfull.request();
+
+    $(".draft-options a").hover (->
+      if not $(this).hasClass('selected')
+        $(".draft-options a.selected").addClass('override-select')
+      ),(->
+      if not $(this).hasClass('selected')
+        $(".draft-options a.selected").removeClass('override-select')
+      )
 
     screenfull.onchange = ->
       if screenfull.isFullscreen
