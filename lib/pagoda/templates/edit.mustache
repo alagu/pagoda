@@ -11,17 +11,17 @@
               <a href="{{base_url}}/">&laquo; ADMIN</a>
               {{alagu}}
               <div class="yaml-block">
-                <div class="yaml-table">
+                <div class="yaml-table arrow-box">
                   <div class="yaml-table-inner">
                   <ul>
                   {{#data_array}}
                     <li>
                       <div class="key"><input type="text" value="{{key}}" /></div>
                       <div class="value"><input type="text" value="{{value}}"/></div>
+                    </li>
                   {{/data_array}}
+                  <li class="add-yaml-entry"> Add new item </li>
                   </ul>
-                  </div>
-                  <div class="yaml-arrow">
                   </div>
                 </div>
                 <a id="#" class="button">DATA</a>
@@ -40,6 +40,10 @@
         </div>
       </div>
     </form>
+    <script type="text/template" id="add-yaml-template"><li>
+        <div class="key"><input type="text" value="" /></div>
+        <div class="value"><input type="text" value=""/></div>
+      </li></script>
   </div>
 
 </body>

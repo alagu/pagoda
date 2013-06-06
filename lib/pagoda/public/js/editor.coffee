@@ -64,6 +64,10 @@ $(document).ready ->
     )
     .fail((->set_save_button('error')))
 
+  add_yaml_entry = ->
+    html = $('#add-yaml-template').html()
+    $(html).insertBefore($('.add-yaml-entry'))
+
   # Dom invoked events
   handle_events =->
     $('#post-editor #post-title').autosize({append: "\n"})
@@ -111,6 +115,7 @@ $(document).ready ->
 
       $('#draft-action').click(draft_post)
       $('#publish-action').click(publish_post)
+      $('.add-yaml-entry').click(add_yaml_entry)
 
 
   keyboard_events =->
