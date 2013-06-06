@@ -211,6 +211,55 @@ code {
 #publish-bar .sub-menu li {
   margin: 0 0 15px 0;
 }
+#publish-bar .yaml-block {
+  display: inline-block;
+}
+#publish-bar .yaml-block .yaml-table {
+  position: absolute;
+  border: 1px solid #444;
+  background-color: #fff;
+  top: -110px;
+  left: 40px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: rgba(68, 68, 68, 0.9) 0 0 5px;
+  -moz-box-shadow: rgba(68, 68, 68, 0.9) 0 0 5px;
+  box-shadow: rgba(68, 68, 68, 0.9) 0 0 5px;
+  padding: 0px;
+}
+#publish-bar .yaml-block .yaml-table ul {
+  margin: 0;
+  padding: 0;
+}
+#publish-bar .yaml-block .yaml-table ul li .key input, #publish-bar .yaml-block .yaml-table ul li .value input {
+  width: 100px;
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 14px;
+  padding-left: 4px;
+}
+#publish-bar .yaml-block .yaml-table ul li .key, #publish-bar .yaml-block .yaml-table ul li .value {
+  border-bottom: 1px solid #777;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 2px;
+  display: inline-block;
+}
+#publish-bar .yaml-block .yaml-table ul li .key {
+  border-right: 1px solid #777;
+}
+#publish-bar .yaml-block .yaml-table ul li .value {
+  margin-left: -3px;
+}
+#publish-bar .yaml-block .yaml-table ul li:last-child .key, #publish-bar .yaml-block .yaml-table ul li:last-child .value {
+  border-bottom: 0 none;
+}
 
 #publish-bar input[type=submit],
 #publish-bar a,

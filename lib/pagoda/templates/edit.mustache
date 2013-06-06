@@ -2,7 +2,6 @@
 <body class="admin posts edit">
   <div id="admin">
     <div id="save"></div>
-    
     <form accept-charset="UTF-8" action="{{base_url}}/save-post" class="edit_post" method="post">
       {{>editor_area}}
       <div id="publish-bar-hover">
@@ -10,7 +9,23 @@
           <div class="contain">
             <div class="left">
               <a href="{{base_url}}/">&laquo; ADMIN</a>
-              <a href="{{base_url}}/delete/{{ name }}" class="delete-bar delete-button" >DELETE</a>
+              {{alagu}}
+              <div class="yaml-block">
+                <div class="yaml-table">
+                  <div class="yaml-table-inner">
+                  <ul>
+                  {{#data_array}}
+                    <li>
+                      <div class="key"><input type="text" value="{{key}}" /></div>
+                      <div class="value"><input type="text" value="{{value}}"/></div>
+                  {{/data_array}}
+                  </ul>
+                  </div>
+                  <div class="yaml-arrow">
+                  </div>
+                </div>
+                <a id="#" class="button">DATA</a>
+              </div>
             </div>
             <div class="right">
 

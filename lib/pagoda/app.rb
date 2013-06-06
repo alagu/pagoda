@@ -102,6 +102,13 @@ module Shwedagon
       @title   = post.data['title']
       @content = post.content
       @name    = post.name
+
+      @data_array = []
+
+      post.data.each do |key, value|
+        @data_array << {'key' => key, 'value' => value}
+      end
+
       if post.data['published'] == false
         @draft = true
       end
