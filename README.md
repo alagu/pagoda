@@ -4,7 +4,7 @@ Pagoda    [![Build Status](https://travis-ci.org/alagu/pagoda.png?branch=master)
 
 ![http://f.cl.ly/items/3v0Y3q2O461C3K0A221Y/pagoda.png](http://f.cl.ly/items/3v0Y3q2O461C3K0A221Y/pagoda.png)
 
-Zen like **blog editor** for your **Jekyll** blog, heavily inspired by [Svbtle](http://dcurt.is/codename-svbtle) and [Obvtse](https://github.com/natew/obtvse). 
+Zen like **blog editor** for your **Jekyll** blog, heavily inspired by [Svbtle](http://dcurt.is/codename-svbtle) and [Obtvse](https://github.com/natew/obtvse). 
 
 Screenshots
 ===========
