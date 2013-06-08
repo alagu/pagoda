@@ -214,6 +214,9 @@ code {
 #publish-bar .yaml-block {
   display: inline-block;
 }
+#publish-bar .yaml-block .button {
+  cursor: pointer;
+}
 #publish-bar .yaml-block .arrow-box {
   position: relative;
   background: #aaa;
@@ -245,9 +248,11 @@ code {
 #publish-bar .yaml-block .yaml-table {
   position: absolute;
   background-color: #fff;
-  top: -134px;
+  bottom: 10px;
   left: 20px;
+  float: left;
   background-color: #aaa;
+  display: none;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;

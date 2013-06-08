@@ -16,8 +16,8 @@
                   <ul>
                   {{#data_array}}
                     <li>
-                      <div class="key"><input type="text" value="{{key}}" /></div>
-                      <div class="value"><input type="text" value="{{value}}"/></div>
+                      <div class="key"><input type="text" class="yaml-key" name="yaml_key[{{key}}]" value="{{key}}" /></div>
+                      <div class="value"><input type="text" class="yaml-value" name="yaml_value[{{value}}]" value="{{value}}"/></div>
                     </li>
                   {{/data_array}}
                   <li class="add-yaml-entry"> Add new item </li>
@@ -41,8 +41,8 @@
       </div>
     </form>
     <script type="text/template" id="add-yaml-template"><li>
-        <div class="key"><input type="text" value="" /></div>
-        <div class="value"><input type="text" value=""/></div>
+        <div class="key"><input type="text" class="yaml-key" value="" /></div>
+        <div class="value"><input type="text" class="yaml-value" value=""/></div>
       </li></script>
   </div>
 

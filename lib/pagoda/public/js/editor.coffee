@@ -67,6 +67,26 @@ $(document).ready ->
   add_yaml_entry = ->
     html = $('#add-yaml-template').html()
     $(html).insertBefore($('.add-yaml-entry'))
+    $('.yaml-table-inner .key input').focus()
+    $('.yaml-table-inner input').unbind('keyup', yaml_table_set_data)
+    $('.yaml-table-inner input').bind('keyup', yaml_table_set_data)
+
+  toggle_yaml_table = ->
+    $('.yaml-table').toggle()
+
+  yaml_table_set_data = ->
+    rows = $('.yaml-table-inner input')
+    for row in rows
+      if $(row).hasClass('yaml-key')
+        value = $(row).val()
+        value = value.replace(" ","-")
+        $(row).val(value)
+        name  = "yaml_key[#{value}]"
+        $(row).attr('name', name)
+      else if $(row).hasClass('yaml-value')
+        key   = $(row).parent().parent().find('.yaml-key').val()
+        name  = "yaml_value[#{key}]"
+        $(row).attr('name', name)
 
   # Dom invoked events
   handle_events =->
@@ -116,7 +136,8 @@ $(document).ready ->
       $('#draft-action').click(draft_post)
       $('#publish-action').click(publish_post)
       $('.add-yaml-entry').click(add_yaml_entry)
-
+      $('.yaml-block .button').click(toggle_yaml_table)
+      $('.yaml-table-inner input').bind('keyup', yaml_table_set_data)
 
   keyboard_events =->
     key('⌘+enter, ctrl+enter', (e)->
@@ -159,7 +180,7 @@ $(document).ready ->
         # Hide the address bar!
         window.scrollTo 0, 1
       ), 0
-    $('.links').remove()
+      $('.links').remove()
 
   init =->
     handle_events()
@@ -167,5 +188,6 @@ $(document).ready ->
     show_shortcuts() if not is_iphone()
     focus_to_type()
     fullscreen_mobile()
+    yaml_table_set_data()
 
   init()

@@ -212,6 +212,10 @@ code {
   .yaml-block {
     display: inline-block;
     
+    .button {
+      cursor: pointer;
+    }
+    
     .arrow-box {
       position: relative;
       background: #aaa;
@@ -244,9 +248,11 @@ code {
     .yaml-table {
       position: absolute;
       background-color: #fff;
-      top: -134px;
+      bottom: 10px;
       left: 20px;
+      float: left;
       background-color: #aaa;
+      display: none;
       
       @include border-radius(2px);
       padding: 0px;
@@ -262,8 +268,6 @@ code {
         padding: 0;
         
         li {
-          
-          
           .key input, .value input {
             width: 90px;
             border: 0 none;
