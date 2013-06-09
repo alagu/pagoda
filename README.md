@@ -18,7 +18,7 @@ Screenshots
 **Fullscreen editing**
 ![http://cl.ly/image/0b3Y101Y3g0A/Screen%20Shot%202013-05-14%20at%2011.57.45%20PM.png](http://cl.ly/image/0b3Y101Y3g0A/Screen%20Shot%202013-05-14%20at%2011.57.45%20PM.png)
 
-** Edit YAML Data **
+**Edit YAML Data**
 
 ![http://cl.ly/image/2P342Q1W0q1H/Screen%20Shot%202013-06-09%20at%203.13.13%20PM.png](http://cl.ly/image/2P342Q1W0q1H/Screen%20Shot%202013-06-09%20at%203.13.13%20PM.png)
 
