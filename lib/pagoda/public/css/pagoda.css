@@ -387,11 +387,6 @@ label {
   margin: 0 8px 0 0;
 }
 
-#post_draft {
-  position: relative;
-  margin: 0 20px 0 0;
-}
-
 .admin-links {
   position: absolute;
   text-align: right;
@@ -458,9 +453,6 @@ body.posts.new #admin {
 #admin .draft-options a.override-select {
   background-color: inherit;
   color: #000;
-}
-#admin .draft-options #post_draft {
-  display: none;
 }
 #admin #save-button {
   width: 90px;
@@ -781,7 +773,7 @@ body {
 }
 
 @media only screen and (max-device-width: 480px) {
-  #publish-bar .delete-bar, #publish-bar #draft_label, #publish-bar #post_draft {
+  #publish-bar .delete-bar, #publish-bar #draft_label {
     display: none;
   }
 }

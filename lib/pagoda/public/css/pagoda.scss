@@ -396,11 +396,6 @@ label {
   margin: 0 8px 0 0;
 }
 
-#post_draft {
-  position: relative;
-  margin: 0 20px 0 0;
-}
-
 .admin-links {
   position: absolute;
   text-align: right;
@@ -460,10 +455,6 @@ body.posts.new #admin {
     a.override-select {
       background-color: inherit;
       color: #000;
-    }
-
-    #post_draft {
-      display: none;
     }
   }
   
@@ -802,7 +793,7 @@ body {
 }
 
 #publish-bar {
-  .delete-bar, #draft_label, #post_draft {
+  .delete-bar, #draft_label {
     @media #{$iphone} { display: none; }   
   }
 }

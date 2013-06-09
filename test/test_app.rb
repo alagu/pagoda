@@ -77,6 +77,29 @@ context "Frontend" do
 
     assert_equal last_response.status, 200
     assert_match /"status":"OK"/, last_response.body
+
+    get "/edit/#{post_file}"
+    assert_match /Text 1 and Text 2/, last_response.body
+  end
+
+  test "Edit post with yaml" do
+    post_file = create_post('Editable post', 'Text 1')
+    youtube_url = 'http://www.youtube.com/watch?v=p86BPM1GV8M'
+    post "/save-post",
+      :post =>
+        { 
+          :title   => 'Editable post',
+          :content => 'Text 1 and Text 2',
+          :name    => post_file,
+          :yaml    => { :youtube => youtube_url }
+        },
+      :ajax => true
+
+    assert_equal last_response.status, 200
+    assert_match /"status":"OK"/, last_response.body
+
+    post_object = jekyll_post_object(@path, post_file)
+    assert_equal post_object.data['youtube'], youtube_url
   end
 
   test "Draft and Undraft" do
@@ -91,10 +114,10 @@ context "Frontend" do
            { :title   => 'Draftable post',
              :content => 'Text 1',
              :name    => post_file,
-             :draft   => 'off'
+             :yaml    => { :published => true }
            }
 
-    # Verify whehter it is published
+    # Verify whether it is published
     post_object = jekyll_post_object(@path, post_file)
     assert_equal post_object.data['published'], true
 
@@ -104,7 +127,7 @@ context "Frontend" do
            { :title   => 'Draftable post',
              :content => 'Text 1',
              :name    => post_file,
-             :draft   => 'on'
+             :yaml    => { :published => false }
            }
 
     post_object = jekyll_post_object(@path, post_file)
