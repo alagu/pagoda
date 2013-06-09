@@ -2,7 +2,6 @@
 <body class="admin posts edit">
   <div id="admin">
     <div id="save"></div>
-    
     <form accept-charset="UTF-8" action="{{base_url}}/save-post" class="edit_post" method="post">
       {{>editor_area}}
       <div id="publish-bar-hover">
@@ -10,14 +9,29 @@
           <div class="contain">
             <div class="left">
               <a href="{{base_url}}/">&laquo; ADMIN</a>
-              <a href="{{base_url}}/delete/{{ name }}" class="delete-bar delete-button" >DELETE</a>
+              {{alagu}}
+              <div class="yaml-block">
+                <div class="yaml-table arrow-box">
+                  <div class="yaml-table-inner">
+                  <ul>
+                  {{#data_array}}
+                    <li>
+                      <div class="key"><input type="text" class="yaml-key" name="yaml_key[{{key}}]" value="{{key}}" /></div>
+                      <div class="value"><input type="text" class="yaml-value" name="yaml_value[{{value}}]" value="{{value}}"/></div>
+                    </li>
+                  {{/data_array}}
+                  <li class="add-yaml-entry"> Add new item </li>
+                  </ul>
+                  </div>
+                </div>
+                <a id="#" class="button">DATA</a>
+              </div>
             </div>
             <div class="right">
 
               <div class="draft-options">
                 <a id="draft-action" class="button {{#draft}}selected{{/draft}}" href="#">DRAFT</a>
                 <a id="publish-action" class="button {{^draft}}selected{{/draft}}" href="#">DONE</a>
-                <input id="post_draft" name="post[draft]" type="checkbox" {{#draft}}checked{{/draft}} />
               </div>
               <input id="save-button" name="commit" type="submit" value="SAVE" />
             </div>
@@ -25,6 +39,10 @@
         </div>
       </div>
     </form>
+    <script type="text/template" id="add-yaml-template"><li>
+        <div class="key"><input type="text" class="yaml-key" value="" /></div>
+        <div class="value"><input type="text" class="yaml-value" value=""/></div>
+      </li></script>
   </div>
 
 </body>

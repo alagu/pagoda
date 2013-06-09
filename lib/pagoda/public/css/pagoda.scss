@@ -208,6 +208,115 @@ code {
     .sub-menu li {
       margin: 0 0 15px 0;
     }
+
+  .yaml-block {
+    display: inline-block;
+    
+    .button {
+      cursor: pointer;
+    }
+    
+    .arrow-box {
+      position: relative;
+      background: #aaa;
+      border: 2px solid #444444;
+      &:after, &:before {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+      &:after {
+        border-color: rgba(119, 119, 119, 0);
+        border-top-color: #aaa;
+        border-width: 10px;
+        left: 50%;
+        margin-left: -10px;
+      }
+      &:before {
+        border-color: rgba(68, 68, 68, 0);
+        border-top-color: #444444;
+        border-width: 13px;
+        left: 50%;
+        margin-left: -13px;
+      }
+    }
+
+    .yaml-table {
+      position: absolute;
+      background-color: #fff;
+      bottom: 10px;
+      left: 20px;
+      float: left;
+      background-color: #aaa;
+      display: none;
+      
+      @include border-radius(2px);
+      padding: 0px;
+      
+      .yaml-table-inner {
+        background-color: #fff;
+        margin: 1px;
+        border: 1px solid rgba(#444, 0.4);
+      }
+      
+      ul {
+        margin: 0;
+        padding: 0;
+        
+        li {
+          .key input, .value input {
+            width: 90px;
+            border: 0 none;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            font-family: 'Titillium Web', sans-serif;
+            font-size: 14px;
+            padding-left: 10px;
+          }
+
+          .key, .value {
+            border-bottom: 1px solid #777;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 2px;
+            display: inline-block;
+          }
+
+          .key {
+            border-right: 1px solid #777;
+          }
+
+          .value {
+            margin-left: -3px;
+          }
+
+          &:last-child {
+            .key, .value {
+              border-bottom: 0 none;
+            } 
+          }
+        }
+
+        li.add-yaml-entry {
+          color: #fff;
+          text-shadow: 0px 0px 5px #000;
+          background-color: #aaa;
+          font-size: 14px;
+          line-height: 20px;
+          cursor: pointer;
+          
+          &:hover {
+            text-shadow: 0px 0px 20px #000;
+          }
+        }
+      }
+    }
+  }
 }
 
 #publish-bar input[type=submit],
@@ -287,11 +396,6 @@ label {
   margin: 0 8px 0 0;
 }
 
-#post_draft {
-  position: relative;
-  margin: 0 20px 0 0;
-}
-
 .admin-links {
   position: absolute;
   text-align: right;
@@ -351,10 +455,6 @@ body.posts.new #admin {
     a.override-select {
       background-color: inherit;
       color: #000;
-    }
-
-    #post_draft {
-      display: none;
     }
   }
   
@@ -693,7 +793,7 @@ body {
 }
 
 #publish-bar {
-  .delete-bar, #draft_label, #post_draft {
+  .delete-bar, #draft_label {
     @media #{$iphone} { display: none; }   
   }
 }

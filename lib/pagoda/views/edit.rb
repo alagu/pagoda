@@ -5,6 +5,7 @@ module Shwedagon
       attr_accessor :content
       attr_accessor :name
       attr_accessor :draft
+      attr_accessor :data_array
       
     end
   end

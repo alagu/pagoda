@@ -211,6 +211,101 @@ code {
 #publish-bar .sub-menu li {
   margin: 0 0 15px 0;
 }
+#publish-bar .yaml-block {
+  display: inline-block;
+}
+#publish-bar .yaml-block .button {
+  cursor: pointer;
+}
+#publish-bar .yaml-block .arrow-box {
+  position: relative;
+  background: #aaa;
+  border: 2px solid #444444;
+}
+#publish-bar .yaml-block .arrow-box:after, #publish-bar .yaml-block .arrow-box:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+#publish-bar .yaml-block .arrow-box:after {
+  border-color: rgba(119, 119, 119, 0);
+  border-top-color: #aaa;
+  border-width: 10px;
+  left: 50%;
+  margin-left: -10px;
+}
+#publish-bar .yaml-block .arrow-box:before {
+  border-color: rgba(68, 68, 68, 0);
+  border-top-color: #444444;
+  border-width: 13px;
+  left: 50%;
+  margin-left: -13px;
+}
+#publish-bar .yaml-block .yaml-table {
+  position: absolute;
+  background-color: #fff;
+  bottom: 10px;
+  left: 20px;
+  float: left;
+  background-color: #aaa;
+  display: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0px;
+}
+#publish-bar .yaml-block .yaml-table .yaml-table-inner {
+  background-color: #fff;
+  margin: 1px;
+  border: 1px solid rgba(68, 68, 68, 0.4);
+}
+#publish-bar .yaml-block .yaml-table ul {
+  margin: 0;
+  padding: 0;
+}
+#publish-bar .yaml-block .yaml-table ul li .key input, #publish-bar .yaml-block .yaml-table ul li .value input {
+  width: 90px;
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 14px;
+  padding-left: 10px;
+}
+#publish-bar .yaml-block .yaml-table ul li .key, #publish-bar .yaml-block .yaml-table ul li .value {
+  border-bottom: 1px solid #777;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 2px;
+  display: inline-block;
+}
+#publish-bar .yaml-block .yaml-table ul li .key {
+  border-right: 1px solid #777;
+}
+#publish-bar .yaml-block .yaml-table ul li .value {
+  margin-left: -3px;
+}
+#publish-bar .yaml-block .yaml-table ul li:last-child .key, #publish-bar .yaml-block .yaml-table ul li:last-child .value {
+  border-bottom: 0 none;
+}
+#publish-bar .yaml-block .yaml-table ul li.add-yaml-entry {
+  color: #fff;
+  text-shadow: 0px 0px 5px #000;
+  background-color: #aaa;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
+#publish-bar .yaml-block .yaml-table ul li.add-yaml-entry:hover {
+  text-shadow: 0px 0px 20px #000;
+}
 
 #publish-bar input[type=submit],
 #publish-bar a,
@@ -292,11 +387,6 @@ label {
   margin: 0 8px 0 0;
 }
 
-#post_draft {
-  position: relative;
-  margin: 0 20px 0 0;
-}
-
 .admin-links {
   position: absolute;
   text-align: right;
@@ -363,9 +453,6 @@ body.posts.new #admin {
 #admin .draft-options a.override-select {
   background-color: inherit;
   color: #000;
-}
-#admin .draft-options #post_draft {
-  display: none;
 }
 #admin #save-button {
   width: 90px;
@@ -686,7 +773,7 @@ body {
 }
 
 @media only screen and (max-device-width: 480px) {
-  #publish-bar .delete-bar, #publish-bar #draft_label, #publish-bar #post_draft {
+  #publish-bar .delete-bar, #publish-bar #draft_label {
     display: none;
   }
 }
