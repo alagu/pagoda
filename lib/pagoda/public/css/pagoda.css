@@ -249,7 +249,7 @@ code {
   position: absolute;
   background-color: #fff;
   bottom: 10px;
-  left: 20px;
+  left: -60px;
   float: left;
   background-color: #aaa;
   display: none;
@@ -291,6 +291,9 @@ code {
 }
 #publish-bar .yaml-block .yaml-table ul li .value {
   margin-left: -3px;
+}
+#publish-bar .yaml-block .yaml-table ul li .value input {
+  width: 250px;
 }
 #publish-bar .yaml-block .yaml-table ul li:last-child .key, #publish-bar .yaml-block .yaml-table ul li:last-child .value {
   border-bottom: 0 none;

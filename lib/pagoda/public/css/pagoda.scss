@@ -249,7 +249,7 @@ code {
       position: absolute;
       background-color: #fff;
       bottom: 10px;
-      left: 20px;
+      left: -60px;
       float: left;
       background-color: #aaa;
       display: none;
@@ -293,6 +293,10 @@ code {
 
           .value {
             margin-left: -3px;
+            
+            input {
+              width: 250px;
+            }
           }
 
           &:last-child {
