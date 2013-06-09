@@ -31,6 +31,16 @@ module Shwedagon
       File.join(jekyll_site.source, *%w[_posts], post_file)
     end
 
+    def default_yaml
+      defaults_file = File.join(jekyll_site.source, '_default.yml')
+      defaults  = {}
+      if File.exists? defaults_file
+        defaults = YAML::load(File.read(defaults_file))
+      end
+
+      defaults
+    end
+
     # Jekyll instance of post file
     def jekyll_post(post_file)
       Jekyll::Post.new(jekyll_site, jekyll_site.source, '', post_file)

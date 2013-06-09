@@ -7,6 +7,7 @@ require 'jekyll'
 require 'json'
 require 'grit'
 require 'stringex'
+require 'yaml'
 
 require 'pagoda/views/layout'
 require 'pagoda/helper'
@@ -24,17 +25,24 @@ module Shwedagon
     before do
       @base_url = url('/', false).chomp('/')
     end
-  
+
+    def yaml_data(post_title)
+      defaults = { 'title' => post_title,
+        'layout' => 'post',
+        'published' => false }
+
+      defaults = defaults.merge(default_yaml())
+
+      defaults
+    end
+
     # Create a new post from scratch. Return filename
     # This would not commit the file.
     def create_new_post(params)      
       post_title = params['post']['title']
       post_date  = (Time.now).strftime("%Y-%m-%d")
-      yaml_data  = { 'title' => post_title,
-        'layout' => 'post',
-        'published' => false }
 
-      content    = yaml_data.to_yaml + "---\n" + params[:post][:content]
+      content    = yaml_data(post_title).to_yaml + "---\n" + params[:post][:content]
       post_file  = (post_date + " " + post_title).to_url + '.md'
       file       = File.join(jekyll_site.source, *%w[_posts], post_file)
       File.open(file, 'w') { |file| file.write(content)}
