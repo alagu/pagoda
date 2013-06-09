@@ -38,6 +38,23 @@ context "Frontend" do
     assert_match /Body content for new post/, last_response.body
   end
 
+  test "Create a post with default yaml" do
+    yaml_content = <<YAML
+youtube: enter_youtube_url
+picasa: enter_picasa_url
+YAML
+
+    default_yaml = File.join @path, "_default.yml"
+    File.open(default_yaml, 'w+') { |file| file.write(yaml_content) }
+
+    assert_equal File.exists?(default_yaml), true
+
+    post_file = create_post('Create new post test', 'Body content for new post')
+    post_object = jekyll_post_object(@path, post_file)
+    assert_equal post_object.data['youtube'], 'enter_youtube_url'
+    assert_equal post_object.data['picasa'], 'enter_picasa_url'
+  end
+
   test "Edit a post" do
     post_file = create_post('Editable post', 'Text 1')
     
