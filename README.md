@@ -18,6 +18,11 @@ Screenshots
 **Fullscreen editing**
 ![http://cl.ly/image/0b3Y101Y3g0A/Screen%20Shot%202013-05-14%20at%2011.57.45%20PM.png](http://cl.ly/image/0b3Y101Y3g0A/Screen%20Shot%202013-05-14%20at%2011.57.45%20PM.png)
 
+** Edit YAML Data **
+
+![http://cl.ly/image/2P342Q1W0q1H/Screen%20Shot%202013-06-09%20at%203.13.13%20PM.png](http://cl.ly/image/2P342Q1W0q1H/Screen%20Shot%202013-06-09%20at%203.13.13%20PM.png)
+
+
 **Mobile Dashboard and Editing**
 
 
@@ -37,6 +42,10 @@ Two commands, one for installing, another for running.
 
 ![http://cl.ly/image/1B3Z1Q3I1g37/pagoda-install.png](http://cl.ly/image/1B3Z1Q3I1g37/pagoda-install.png)
 
+
+Default YAML
+=============
+Each post created with pagoda will have a default yaml data. To modify it, create a `_default.yml` in your jekyll repository and commit it.
 
 
 Deploying on your own server
