@@ -42,6 +42,8 @@ $ open http://sushi.herokuapp.com/
 Open up your browser and you should have pagoda up and ready!
 
 
+Probably, it should be even simpler if all this is wrapped inside a shell script.
+
 
 ### Inline Markdown Editor
 
