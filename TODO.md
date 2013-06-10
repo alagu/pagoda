@@ -45,6 +45,15 @@ Open up your browser and you should have pagoda up and ready!
 
 ### Inline Markdown Editor
 
+**Problems with existing Markdown editor**
+- Split screen sucks. One screen to preview and another screen to edit. Redundant content.
+- You need to remember Markdown syntax.
+
+**How I wish the editor would be**
+- The line in which you are editing, you can write in Markdown. Once you move to the next line, the previously edited line should automatically get converted to preview (or) rendered mode.
+- When you move your cursor to a specific line, it should automatically be in markdown syntax mode.
+- Markdown syntax is fairly simple - but it requires some amount of help around to remember. Still not sure of whether an iconbox is required here or some other way to make me remember syntax.
+
 
 # Done
 - YAML Editor
