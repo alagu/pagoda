@@ -1,11 +1,5 @@
 # TODO List
 
-- [ ] Deployable in Heroku
-- [ ] New Editor
-- [ ] this is an incomplete item
-
-
-
 ### Deployable in heroku.
 
 Anyone should be able to use heroku to host their pagoda instance, irrespective of where their jekyll git repository is.
