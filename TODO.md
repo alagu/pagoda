@@ -1,4 +1,8 @@
-# TODO
+# TODO List
+
+- [ ] Deployable in Heroku
+- [ ] New Editor
+
 
 ### Deployable in heroku.
 
