@@ -39,6 +39,6 @@ rescue OptionParser::InvalidOption
   exit
 end
 
-Shwedagon::App.set :repo_src, ENV['REPO_SRC']
+Shwedagon::App.set :repo_src, ENV['JEKYLL_REPO']
 
 Shwedagon::App.run!(options)

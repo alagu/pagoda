@@ -6,5 +6,6 @@ require 'pagoda/app'
 
 use Rack::ShowExceptions
 
-Shwedagon::App.set :blog, ENV['blog']
+Shwedagon::App.set :repo_src, ENV['JEKYLL_REPO']
+
 map ('/admin') { run Shwedagon::App.new }
