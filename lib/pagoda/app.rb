@@ -24,6 +24,7 @@ module Shwedagon
    
     before do
       @base_url = url('/', false).chomp('/')
+      clone_repo()
     end
 
     def yaml_data(post_title)
@@ -154,7 +155,7 @@ module Shwedagon
     end
 
     post '/save-post' do
-      config = Jekyll.configuration({'source' => settings.blog})
+      config = Jekyll.configuration({'source' => cloned_repo_path})
       site   = Jekyll::Site.new(config)
 
       if params[:method] == 'put'

@@ -32,18 +32,13 @@ end
 # Read command line options into `options` hash
 begin
   opts.parse!
-  jekyll_path = ARGV[0] || Dir.pwd
-
-  if not File.directory? jekyll_path
-    raise OptionParser::InvalidOption.new "Directory '#{jekyll_path}' not found"
-  end
-
+  
 rescue OptionParser::InvalidOption
   puts "pagoda: #{$!.message}"
   puts "pagoda: try 'pagoda --help' for more information"
   exit
 end
 
-Shwedagon::App.set :blog, ARGV.first
+Shwedagon::App.set :repo_src, ENV['REPO_SRC']
 
 Shwedagon::App.run!(options)

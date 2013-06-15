@@ -5,7 +5,7 @@ module Shwedagon
     # Jekyll site instance
     def jekyll_site
       if not @site
-        config  = Jekyll.configuration({'source' => settings.blog})
+        config  = Jekyll.configuration({'source' => cloned_repo_path})
         @site   = Jekyll::Site.new(config)
         @site.read
       end
@@ -13,10 +13,25 @@ module Shwedagon
       @site
     end
 
+    def app_base
+      File.dirname(File.dirname(File.dirname(__FILE__)))
+    end
+
+    def cloned_repo_path
+      "#{app_base}/tmp/repo"
+    end
+
+    def clone_repo
+      if not File.directory? cloned_repo_path
+        grit = Grit::Git.new(cloned_repo_path)
+        grit.clone({:quiet => false, :verbose => true, :progress => true}, settings.repo_src, cloned_repo_path)
+      end
+    end
+
     # Grit repo instance
     def repo
-      @repo ||= Grit::Repo.new(settings.blog) 
-      Dir.chdir(settings.blog)
+      @repo ||= Grit::Repo.new(cloned_repo_path) 
+      Dir.chdir(cloned_repo_path)
 
       @repo
     end
