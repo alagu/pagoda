@@ -13,8 +13,16 @@ module Shwedagon
       @site
     end
 
+    def git_opts
+      {:raise=>true, :timeout=>false, :chdir => cloned_repo_path}
+    end
+
     def app_base
       File.dirname(File.dirname(File.dirname(__FILE__)))
+    end
+
+    def push_to_origin(repo)
+      repo.git.push(git_opts, ["origin"])
     end
 
     def cloned_repo_path
@@ -24,12 +32,7 @@ module Shwedagon
     def clone_repo
       if not File.directory? cloned_repo_path
         grit = Grit::Git.new(cloned_repo_path)
-        puts "Cloning #{settings.repo_src}"
         grit.clone({:quiet => false, :verbose => true, :progress => true}, settings.repo_src, cloned_repo_path)
-        puts "Cloning done"
-      else
-        puts "Cloning of #{settings.repo_src} done."
-        puts Dir.entries(cloned_repo_path)
       end
     end
 
