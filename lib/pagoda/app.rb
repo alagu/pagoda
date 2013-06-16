@@ -103,6 +103,7 @@ module Shwedagon
 
       repo.remove([full_path])
       data = repo.commit_index "Deleted #{post_file}"
+      push_to_origin(repo)
       
       redirect @base_url
     end
@@ -170,6 +171,7 @@ module Shwedagon
       repo.add File.join(jekyll_site.source, *%w[_posts], filename)
 
       data = repo.commit_index log_message
+      push_to_origin(repo)
 
       if params[:ajax]
         {:status => 'OK'}.to_json
