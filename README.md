@@ -50,7 +50,7 @@ Running it on Heroku
 
 ```
 git clone https://github.com/alagu/pagoda
-heroku create .
+heroku create
 heroku config:add JEKYLL_ENV=git@bitbucket.org/alagu/blog-test.git
 ```
 

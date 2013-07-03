@@ -30,6 +30,7 @@ module Shwedagon
     end
 
     def clone_repo
+      set_ssh_access()
       if not File.directory? cloned_repo_path
         grit = Grit::Git.new(cloned_repo_path)
         grit.clone({:quiet => false, :verbose => true, :progress => true}, settings.repo_src, cloned_repo_path)
@@ -87,6 +88,17 @@ module Shwedagon
       template_data.sort! { |x,y| y[:date] <=> x[:date] }
 
       template_data
+    end
+
+    def set_ssh_access
+      if ENV.has_key? 'SSH_PRIVATE_KEY'
+        FileUtils.mkdir '/app/.ssh/'
+        f = File.new '/app/.ssh/id_rsa', 'w+'
+        f.write ENV['SSH_PRIVATE_KEY']
+        f.close
+        f.chmod(0600)
+        FileUtils.chmod '/app/.ssh/' 
+      end
     end
   end
 end
