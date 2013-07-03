@@ -32,6 +32,8 @@ Screenshots
 Install
 =======
 
+Installing locally
+------------------
 Two commands, one for installing, another for running.
 
 ```
@@ -41,6 +43,16 @@ Two commands, one for installing, another for running.
 
 
 ![http://cl.ly/image/1B3Z1Q3I1g37/pagoda-install.png](http://cl.ly/image/1B3Z1Q3I1g37/pagoda-install.png)
+
+
+Running it on Heroku
+--------------------
+
+```
+git clone https://github.com/alagu/pagoda
+heroku create .
+heroku config:add JEKYLL_ENV=git@bitbucket.org/alagu/blog-test.git
+```
 
 
 Default YAML
