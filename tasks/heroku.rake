@@ -61,7 +61,7 @@ task "heroku" do
   puts "Configuring Heroku for you"
   new_conf = {}
   new_conf['JEKYLL_REPO'] = ask "Enter your repository url (e.g git@bitbucket.org:alagu/private-blog.git): "
-  new_conf['LOGIN_USER']  = ask "Your email id: "
+  new_conf['LOGIN_USER']  = ask "Pick a Username: "
   new_conf['LOGIN_PASS']  = Digest::MD5.hexdigest(ask("Enter a password:  ") { |q| q.echo = "*" })  
 
   ssh = SSHKey.generate(:comment => new_conf['LOGIN_USER'])
