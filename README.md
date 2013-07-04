@@ -47,11 +47,16 @@ Two commands, one for installing, another for running.
 
 Running it on Heroku
 --------------------
+Requirements:
+1. Heroku
+2. Git
+3. Your Jekyll Repo
 
 ```
 git clone https://github.com/alagu/pagoda
+cd pagoda
 heroku create
-heroku config:add JEKYLL_ENV=git@bitbucket.org/alagu/blog-test.git
+bundle exec rake heroku
 ```
 
 

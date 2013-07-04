@@ -80,12 +80,12 @@ task "heroku" do
     end
   end
 
-  puts "------------------------------"
-  puts "Setting Heroku configuration  "
-  puts get_config(heroku_auth_data)
-  puts "------------------------------"
 
-  puts "Copy this ssh key to online (also saved in ~/.ssh/pagoda-key.pub)" 
+  puts "Heroku configuration Done. "
+
+  puts "Copy this ssh public key to github or bitbucket or your git remote (also saved in ~/.ssh/pagoda-key.pub)" 
   puts 
   puts public_key
+  puts 
+  puts "Visit http://#{heroku_auth_data[:app]}.herokuapp.com/ and login with the above given Username & Password"
 end
