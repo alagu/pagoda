@@ -31,17 +31,8 @@ module Shwedagon
 
     def clone_repo
       set_ssh_access()
-      puts "After ssh access"
 
       if not File.directory? cloned_repo_path
-        puts "Cloning repository"
-        if File.exists? '/app/.ssh/id_rsa'
-          puts "rsa File exists"
-          puts File.read "/app/.ssh/id_rsa"
-        else
-          puts "rsa File DOES NOT exist"
-        end
-
         grit = Grit::Git.new(cloned_repo_path)
         grit.clone({:quiet => false, :verbose => true, :progress => true}, settings.repo_src, cloned_repo_path)
       end
@@ -101,7 +92,10 @@ module Shwedagon
     end
 
     def set_ssh_access
-      if ENV.has_key? 'SSH_PRIVATE_KEY' and (not File.exists? '/app/.ssh/id_rsa')
+      if ENV.has_key? 'SSH_PRIVATE_KEY' and 
+        (not File.exists? '/app/.ssh/id_rsa') and
+        ENV['RACK_ENV'] == 'production'
+
         FileUtils.mkdir_p '/app/.ssh/'
         f = File.new '/app/.ssh/id_rsa', 'w+'
         f.write ENV['SSH_PRIVATE_KEY']
