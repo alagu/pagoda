@@ -5,8 +5,7 @@ context "Frontend" do
   include Rack::Test::Methods
 
   setup do
-    @path = cloned_testpath("examples/sample-blog.git")
-    Shwedagon::App.set :blog, @path
+    Shwedagon::App.set :repo_src, File.expand_path(testpath("examples/sample-blog.git"))
   end
 
   teardown do
