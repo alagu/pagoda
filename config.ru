@@ -6,7 +6,7 @@ require 'digest/md5'
 
 use Rack::ShowExceptions
 
-if ENV.has_key 'HTTP_MESSAGE'
+if ENV.has_key? 'HTTP_MESSAGE'
   message = ENV['HTTP_MESSAGE']
 else
   message = "Private Blog"
