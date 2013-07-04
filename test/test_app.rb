@@ -8,6 +8,7 @@ context "Frontend" do
     @remote_path =  copied_remote("examples/sample-blog.git")
     @path        =  cloned_path()
     Shwedagon::App.set :repo_src, @remote_path 
+    get '/'
   end
 
   teardown do
@@ -48,7 +49,8 @@ picasa: enter_picasa_url
 YAML
 
     default_yaml = File.join @path, "_default.yml"
-    File.open(default_yaml, 'w+') { |file| file.write(yaml_content) }
+
+    File.open(default_yaml, 'w') { |file| file.write(yaml_content) }
 
     assert_equal File.exists?(default_yaml), true
 
