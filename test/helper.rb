@@ -27,19 +27,23 @@ def testpath(path)
   File.join(TEST_DIR, path)
 end
 
-# Cloned test path
-def cloned_testpath(path)
-  repo   = File.expand_path(testpath(path))
-  path   = File.dirname(repo)
-  cloned = File.join(path, self.class.name)
-  FileUtils.rm_rf(cloned)
-  Dir.chdir("/")
-  Dir.chdir("/") do
-    %x{git clone #{repo} #{cloned}}
-    %x{git config --global user.email "alagu@alagu.net"}
-    %x{git config --global user.name "Alagu"}
-  end
-  cloned
+def tmp_path(path = "")
+  root_path = File.dirname(File.dirname(File.expand_path(__FILE__)))
+  File.join root_path, "tmp", path
+end
+
+def cloned_path
+  tmp_path("repo")
+end
+
+# Copy the remote to another place to be cloned
+def copied_remote(path)
+  remote = File.expand_path(testpath(path))
+  remote_copied = tmp_path("remote_copied")
+
+  FileUtils.cp_r remote, remote_copied
+
+  remote_copied
 end
 
 # Jekyll instance of post file

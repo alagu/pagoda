@@ -5,13 +5,17 @@ context "Frontend" do
   include Rack::Test::Methods
 
   setup do
-    Shwedagon::App.set :repo_src, File.expand_path(testpath("examples/sample-blog.git"))
+    @remote_path =  copied_remote("examples/sample-blog.git")
+    @path        =  cloned_path()
+    Shwedagon::App.set :repo_src, @remote_path 
   end
 
   teardown do
     Dir.chdir("/")
-    FileUtils.rm_rf(@path)
+    FileUtils.rm_rf @remote_path
+    FileUtils.rm_rf @path
   end
+
 
   test "Basic listing for the example case" do
     get '/'
