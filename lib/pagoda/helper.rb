@@ -93,11 +93,10 @@ module Shwedagon
     def set_ssh_access
       if ENV.has_key? 'SSH_PRIVATE_KEY' and (not File.exists? '/app/.ssh/id_rsa')
         FileUtils.mkdir '/app/.ssh/'
-        File.new '/app/.ssh/id_rsa', 'w+' do |f|          
-          f.write ENV['SSH_PRIVATE_KEY']
-          f.chmod(0600)
-        end
-        
+        f = File.new '/app/.ssh/id_rsa', 'w+'
+        f.write ENV['SSH_PRIVATE_KEY']
+        f.chmod(0600)
+        f.close
         FileUtils.chmod 0700, '/app/.ssh'
       end
     end
