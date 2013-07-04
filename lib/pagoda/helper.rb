@@ -109,9 +109,6 @@ UserKnownHostsFile /dev/null
 CONF
         File.open('/app/.ssh/config', 'w+') { |f| f.write ssh_config }
       end
-    
-      puts "Done adding ssh access"
-      puts `cat /app/.ssh/id_rsa`
     end
   end
 end
