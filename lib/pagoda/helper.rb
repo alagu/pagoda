@@ -110,5 +110,14 @@ CONF
         File.open('/app/.ssh/config', 'w+') { |f| f.write ssh_config }
       end
     end
+
+    if not File.exists? '/app/.gitconfig'
+      git_config = <<CONF
+[user]
+  name = Pagoda Admin
+  email = pagoda-admin@github.com
+CONF
+      File.open('/app/.gitconfig', 'w+') { |f| f.write git_config }
+    end
   end
 end
