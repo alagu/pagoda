@@ -55,12 +55,10 @@ end
 
 def create_post(title, content)
   repo = Grit::Repo.new @path
-  puts "TRAVIS CREATE POST = " + repo.log.first.message
+
   post 'save-post', :method => 'put', :post => 
     { :title => title ,
       :content => content}
-
-  puts "TRAVIS CREATE POST DONE = " + repo.log.first.message
 
   post_date = (Time.now).strftime("%Y-%m-%d")
   (post_date + " " + title).to_url + '.md'
