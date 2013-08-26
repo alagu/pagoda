@@ -92,32 +92,35 @@ module Shwedagon
     end
 
     def set_ssh_access
+
+      base = ENV['HOME']
+
       if ENV.has_key? 'SSH_PRIVATE_KEY' and 
-        (not File.exists? '/app/.ssh/id_rsa') and
+        (not File.exists? "#{base}/.ssh/id_rsa") and
         ENV['RACK_ENV'] == 'production'
 
-        FileUtils.mkdir_p '/app/.ssh/'
-        f = File.new '/app/.ssh/id_rsa', 'w+'
+        FileUtils.mkdir_p "#{base}/.ssh/"
+        f = File.new "#{base}/.ssh/id_rsa", 'w+'
         f.write ENV['SSH_PRIVATE_KEY']
         f.chmod(0600)
         f.close
-        FileUtils.chmod 0700, '/app/.ssh'
+        FileUtils.chmod 0700, "#{base}/.ssh"
 
         ssh_config = <<CONF
 StrictHostKeyChecking no
 UserKnownHostsFile /dev/null
 CONF
-        File.open('/app/.ssh/config', 'w+') { |f| f.write ssh_config }
+        File.open("#{base}/.ssh/config", 'w+') { |f| f.write ssh_config }
       end
-    end
 
-    if not File.exists? '/app/.gitconfig'
-      git_config = <<CONF
+      if not File.exists? "#{base}/.gitconfig"
+        git_config = <<CONF
 [user]
   name = Pagoda Admin
   email = pagoda-admin@github.com
 CONF
-      File.open('/app/.gitconfig', 'w+') { |f| f.write git_config }
+        File.open("#{base}/.gitconfig", 'w+') { |f| f.write git_config }
+      end
     end
   end
 end
