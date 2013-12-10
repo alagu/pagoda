@@ -36,7 +36,7 @@ Installing locally
 ------------------
 Two commands, one for installing, another for running.
 
-```
+```sh
   gem install pagoda-jekyll
   pagoda .
 ```
@@ -52,7 +52,7 @@ Requirements:
 2. Git
 3. Your Jekyll Repo
 
-```
+```sh
 git clone https://github.com/alagu/pagoda
 cd pagoda
 heroku create
@@ -73,14 +73,14 @@ This is still not well organized, but the setup works.
 
 ## Create sock and pid folders
 
-```
+```sh
 mkdir -p tmp/pids
 mkdir tmp/sock
 ```
 
 ## Your unicorn configuration (unicorn.rb):
 
-```
+```ruby
 pid "./tmp/pids/blog-admin.pid"
 listen "unix:./tmp/sock/blog-admin.sock"
 ENV['blog'] = '/path/to/your/jekyll/blog'
@@ -88,7 +88,7 @@ ENV['blog'] = '/path/to/your/jekyll/blog'
 
 ## Script to start Unicorn (start.sh):
 
-```
+```sh
 cd /path/to/pagoda
 rvm use 1.9.3
 unicorn -c unicorn.rb  -D
@@ -107,7 +107,7 @@ Adding password for user alagu
 
 `myblog.com` shows the generated blog and `myblog.com/admin` pops up a http authentication for your admin.
 
-```
+```nginx
 upstream unicorn_server {
    server unix:/path/to/tmp/sock/blog-admin.sock;
 }
