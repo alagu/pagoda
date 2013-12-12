@@ -14,8 +14,6 @@ require 'pagoda/helper'
 require 'pagoda/config'
 require 'pagoda/jekyll-mod'
 
-
-
 # Sinatra based frontend
 module Shwedagon
 
@@ -45,11 +43,10 @@ module Shwedagon
 
       content    = yaml_data(post_title).to_yaml + "---\n" + params[:post][:content]
       post_file  = (post_date + " " + post_title).to_url + '.md'
-      file       = File.join(jekyll_site.source, *%w[_posts], post_file)
+      file       = File.join(jekyll_site.source, *%w[_drafts], post_file)
       File.open(file, 'w') { |file| file.write(content)}
       post_file
     end
-
 
     # Merge existing yaml with post params
     def merge_config(yaml, params)
@@ -70,7 +67,12 @@ module Shwedagon
 
     def write_post_contents(content, yaml, post_file)
       writeable_content  = yaml.to_yaml + "---\n" + content
-      file_path          = post_path(post_file)
+
+	  if File.exists? post_path(post_file)
+        file_path          = post_path(post_file)
+      else
+		file_path          = draft_path(post_file)
+	  end
 
       if File.exists? file_path
         File.open(file_path, 'w') { |file| file.write(writeable_content)}
@@ -130,7 +132,6 @@ module Shwedagon
       if post.data['published'] == false
         @draft = true
       end
-
 
       mustache :edit
     end

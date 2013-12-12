@@ -48,12 +48,17 @@ module Shwedagon
 
     # Shortcut for checking whether the post exists
     def post_exists?(post_file)
-      File.exists? post_path(post_file)
+	  File.exists? post_path(post_file) or File.exists? draft_path(post_file)
     end
 
     # Expanded post path of the post file
     def post_path(post_file)
       File.join(jekyll_site.source, *%w[_posts], post_file)
+    end
+
+    # Expanded draft path of the post file
+    def draft_path(post_file)
+      File.join(jekyll_site.source, *%w[_drafts], post_file)
     end
 
     def default_yaml
@@ -68,7 +73,11 @@ module Shwedagon
 
     # Jekyll instance of post file
     def jekyll_post(post_file)
-      Jekyll::Post.new(jekyll_site, jekyll_site.source, '', post_file)
+	  if File.exists? post_path(post_file)
+		  Jekyll::Post.new(jekyll_site, jekyll_site.source, '', post_file)
+      else
+		  Jekyll::Draft.new(jekyll_site, jekyll_site.source, '', post_file)
+      end
     end
 
     # Gives out a sorted list of post template data

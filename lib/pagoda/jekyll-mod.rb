@@ -9,9 +9,9 @@ module Jekyll
     # Returns nothing.
     def read_drafts(dir = '')
       if self.respond_to? 'get_entries'
-        entries = get_entries(dir, '_posts')
+        entries = get_entries(dir, '_drafts')
       else
-        base = File.join(self.source, dir, '_posts')
+        base = File.join(self.source, dir, '_drafts')
         return unless File.exists?(base)
         entries = Dir.chdir(base) { filter_entries(Dir['**/*']) }
       end
@@ -20,8 +20,8 @@ module Jekyll
 
       # first pass processes, but does not yet render post content
       entries.each do |f|
-        if Post.valid?(f)
-          post = Post.new(self, self.source, dir, f)
+        if Draft.valid?(f)
+          post = Draft.new(self, self.source, dir, f)
 
           if (not post.published )
             drafts << post
