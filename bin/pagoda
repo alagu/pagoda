@@ -29,6 +29,14 @@ opts = OptionParser.new do |opts|
   end
 end
 
+if ARGV.length == 0
+  puts "Hello, please pass repository as a parameter.\n\n"
+  puts " $ bin/pagoda git@github.com:user/repo\n\n"
+  exit
+else
+  repo_src = ARGV.first
+end
+
 # Read command line options into `options` hash
 begin
   opts.parse!
@@ -39,6 +47,6 @@ rescue OptionParser::InvalidOption
   exit
 end
 
-Shwedagon::App.set :repo_src, ENV['JEKYLL_REPO']
+Shwedagon::App.set :repo_src, repo_src
 
 Shwedagon::App.run!(options)
