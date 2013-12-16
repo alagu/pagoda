@@ -14,6 +14,11 @@ require 'fileutils'
 require 'minitest/reporters'
 require 'jekyll'
 require 'grit'
+require 'pp'
+
+require 'sidekiq'
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
 
 require 'pagoda/app'
 
@@ -48,9 +53,17 @@ end
 
 # Jekyll instance of post file
 def jekyll_post_object(path, file)
+
+  original_stdout = $stdout
+  $stdout = File.new('/tmp/null.txt', 'w')
+
   config = Jekyll.configuration({'source' => path})
   site   = Jekyll::Site.new(config)
+  
+  $stdout = original_stdout
+
   Jekyll::Post.new(site, site.source, '', file)
+
 end
 
 def create_post(title, content)
@@ -59,6 +72,7 @@ def create_post(title, content)
   post 'save-post', :method => 'put', :post => 
     { :title => title ,
       :content => content}
+
 
   post_date = (Time.now).strftime("%Y-%m-%d")
   (post_date + " " + title).to_url + '.md'

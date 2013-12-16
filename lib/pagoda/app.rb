@@ -8,12 +8,13 @@ require 'json'
 require 'grit'
 require 'stringex'
 require 'yaml'
+require 'sidekiq'
 
 require 'pagoda/views/layout'
 require 'pagoda/helper'
 require 'pagoda/config'
-require 'pagoda/jekyll-mod'
-
+require 'pagoda/jekyll_mod'
+require 'workers/push_commit'
 
 
 # Sinatra based frontend
@@ -156,8 +157,6 @@ module Shwedagon
     end
 
     post '/save-post' do
-      config = Jekyll.configuration({'source' => cloned_repo_path})
-      site   = Jekyll::Site.new(config)
 
       if params[:method] == 'put'
         filename = create_new_post(params)        

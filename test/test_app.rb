@@ -188,6 +188,41 @@ YAML
     assert_equal last_response.status, 200
   end
 
+  test "Check whether the push has gone to the remote" do
+    post_file = create_post('Create new post test', 'Body content for new post')    
+
+    repo = Grit::Repo.new @path
+    logs = repo.git.log({}, "origin/master..master")
+
+    assert_equal logs.length, 0
+  
+  end
+
+  test "Basic Commits via Queues" do
+    get '/'
+
+    ENV["PUSH_VIA_QUEUE"] = "true"
+
+    post_file = create_post('Create new post test', 'Body content for new post')
+
+    ENV.delete "PUSH_VIA_QUEUE"
+
+    assert_equal last_response.status, 302
+
+
+    # Check whether it has been committed
+    repo = Grit::Repo.new @path
+    assert_equal repo.log.first.message, "Created #{post_file}"
+
+
+    assert_equal 1, PushCommitWorker.jobs.size
+    PushCommitWorker.drain
+
+    logs = repo.git.log({}, "origin/master..master")
+    assert_equal logs.length, 0
+  end
+
+
   def app
     Shwedagon::App
   end

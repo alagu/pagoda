@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('compass')
   s.add_development_dependency('fssm')
   s.add_development_dependency('rack-test')
+  s.add_development_dependency('dotenv')
   s.add_development_dependency('shoulda')
   s.add_development_dependency('minitest-reporters')
 

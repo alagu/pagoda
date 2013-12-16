@@ -10,3 +10,4 @@ gem 'simplecov', :require => false, :group => :test
 gem 'coveralls', require: false
 gem 'sshkey'
 gem 'highline'
+gem 'sidekiq'

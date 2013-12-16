@@ -5,9 +5,15 @@ module Shwedagon
     # Jekyll site instance
     def jekyll_site
       if not @site
+        # Supress stdout
+        original_stdout = $stdout
+        $stdout = File.new('/tmp/null.txt', 'w')
+
         config  = Jekyll.configuration({'source' => cloned_repo_path})
         @site   = Jekyll::Site.new(config)
         @site.read
+
+        $stdout = original_stdout
       end
 
       @site
@@ -22,7 +28,11 @@ module Shwedagon
     end
 
     def push_to_origin(repo)
-      repo.git.push(git_opts, ["origin"])
+      if ENV['PUSH_VIA_QUEUE']
+        PushCommitWorker.perform_async
+      else
+        repo.git.push(git_opts, ["origin"])
+      end
     end
 
     def cloned_repo_path
@@ -117,7 +127,7 @@ CONF
         git_config = <<CONF
 [user]
   name = Pagoda Admin
-  email = pagoda-admin@github.com
+  email = alagu@alagu.net
 CONF
         File.open("#{base}/.gitconfig", 'w+') { |f| f.write git_config }
       end
