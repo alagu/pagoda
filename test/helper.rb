@@ -74,6 +74,7 @@ def create_post(title, content)
       :content => content}
 
 
+
   post_date = (Time.now).strftime("%Y-%m-%d")
   (post_date + " " + title).to_url + '.md'
 end
