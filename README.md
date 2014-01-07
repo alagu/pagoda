@@ -1,6 +1,8 @@
 Pagoda    [![Build Status](https://travis-ci.org/alagu/pagoda.png?branch=master)](https://travis-ci.org/alagu/pagoda) [![Code Climate](https://codeclimate.com/github/alagu/pagoda.png)](https://codeclimate.com/github/alagu/pagoda)
 =========
 
+[![Analytics](https://ga-beacon.appspot.com/UA-2819287-7/alagu/pagoda?pixel)](https://github.com/alagu/pagoda)
+
 
 ![http://f.cl.ly/items/3v0Y3q2O461C3K0A221Y/pagoda.png](http://f.cl.ly/items/3v0Y3q2O461C3K0A221Y/pagoda.png)
 
